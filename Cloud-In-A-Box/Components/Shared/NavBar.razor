@@ -1,0 +1,28 @@
+﻿@using System.Collections.Generic
+@using Microsoft.AspNetCore.Components
+@using Cloud_In_A_Box.Components;
+@using Cloud_In_A_Box.Models;
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Insite</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            @foreach (var navlink in NavLinks)
+            {
+                <NavLink class="nav-item nav-link" href="@navlink.Href" Match="@navlink.Match">
+                    <i class="@navlink.Icon pr-2"></i>
+                    <span class="pr-2">@navlink.DisplayName</span>
+                </NavLink>
+            }
+        </div>
+    </div>
+</nav>
+
+@functions {
+
+    [Parameter]
+    private List<NavLinkItem> NavLinks { get; set; }
+}

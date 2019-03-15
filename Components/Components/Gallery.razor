@@ -1,0 +1,38 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@using System.Linq
+@using Cloud_In_A_Box.Components;
+
+@typeparam T
+@inherits GalleryComponentBase<T>
+
+<div id="razor_carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @for (var i = 0; i < Items.Count; i++)
+        {
+            var index = i;
+            <li data-target="#razor_carousel" onclick="@( () => Navigate(index))" class="@(i == CurrentIndex ? "active" : "")"></li>
+        }
+    </ol>
+    <div class="carousel-inner">
+        @if (CurrentItem != null)
+        {
+            <div class="carousel-item active">
+                <img src="@CurrentItem.ImageSource" class="d-block w-100" alt="@CurrentItem.Title">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@CurrentItem.Title</h5>
+                    <p>@CurrentItem.Subtitle</p>
+                </div>
+            </div>
+        }
+    </div>
+    <a class="carousel-control-prev" role="button" onclick="@Back">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" role="button" onclick="@Forward">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>
+

@@ -1,0 +1,30 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@using System.Globalization;
+@using Cloud_In_A_Box.Components
+
+
+@typeparam T
+@inherits UITreeBase<T>
+@if (Nodes != null && Nodes.Any())
+{
+    <ul class="list-group-flush">
+        @foreach (var node in Nodes)
+        {
+            <li class="@GetNodeClass(node)">
+                <span onclick="@((e) => OnNodeClick(e, node))">
+                    <i class="@GetIconClass(node)" onclick="@((e) => OnExpandClick(e, node))"></i>
+                    @node.Text
+                </span>
+                <UITree Nodes="@node.Children"
+                        SelectChangeDelegate=@SelectChangeDelegate
+                        CollapseAsyncDelegate=@CollapseAsyncDelegate
+                        ExpandAsyncDelegate=@ExpandAsyncDelegate>
+                </UITree>
+            </li>
+        }
+    </ul>
+}
+

@@ -1,0 +1,25 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@using Cloud_In_A_Box.Components
+@typeparam T
+@inherits AutoTableComponentBase<T>
+<div>
+    <table class="table">
+        <thead>
+            <tr>@TableHeader</tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Items)
+            {
+                <tr class="@GetRowClass(item)" ondblclick="@( e => ExpandItem(item) )" onclick="@( e => SelectItem(item))">
+                    @RowTemplate
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>@TableFooter</tr>
+        </tfoot>
+    </table>
+</div>
