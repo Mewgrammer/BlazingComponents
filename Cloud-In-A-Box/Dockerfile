@@ -1,12 +1,11 @@
-FROM microsoft/dotnet:3.0-aspnetcore-runtime-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM microsoft/dotnet:3.0-sdk-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /src
 COPY ["Cloud-In-A-Box/Cloud-In-A-Box.csproj", "Cloud-In-A-Box/"]
-COPY ["Components/Cloud-In-A-Box.Components.csproj", "Components/"]
 RUN dotnet restore "Cloud-In-A-Box/Cloud-In-A-Box.csproj"
 COPY . .
 WORKDIR "/src/Cloud-In-A-Box"
