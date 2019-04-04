@@ -42,6 +42,6 @@
 
     protected override async Task OnInitAsync()
     {
-        await StartClock();
+        await InvokeAsync(StartClock);
     }
 }

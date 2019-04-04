@@ -51,7 +51,11 @@ namespace Cloud_In_A_Box.Components
 
         protected override void OnInit()
         {
-
+            if (Items.Any())
+            {
+                CurrentIndex = 0;
+                SelectedItemHasChanged();
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Cloud_In_A_Box.Components
         protected string TableClass { get; set; } = "table table-striped";
 
         [Parameter]
-        protected string SelectedClass { get; set; } = "indigo text-white";
+        protected string SelectedClass { get; set; } = "bg-primary text-white";
 
         [Parameter]
         protected RenderFragment TableHeader { get; set; }
@@ -47,10 +47,11 @@ namespace Cloud_In_A_Box.Components
         [Parameter]
         public IList<T> ExpandedItems { get; private set; } = new List<T>();
 
-        public EventCallback<T> ItemSelected { get; set; }
-        public EventCallback<T> ItemExpanded { get; set; }
 
-        public async void SelectItem(T item)
+        public event Action<T> OnItemSelected;
+        public event Action<T> OnItemExpanded;
+
+        public void SelectItem(T item)
         {
             if (!Selectable) return;
             if (SelectedItems.Contains(item))
@@ -63,10 +64,10 @@ namespace Cloud_In_A_Box.Components
                     SelectedItems = new List<T>();
                 SelectedItems.Add(item);
             }
-            await ItemSelected.InvokeAsync(item);
+            OnItemSelected?.Invoke(item);
         }
 
-        public async void ExpandItem(T item)
+        public void ExpandItem(T item)
         {
             if (!Expandable) return;
             if (ExpandedItems.Contains(item))
@@ -79,7 +80,7 @@ namespace Cloud_In_A_Box.Components
                     ExpandedItems = new List<T>();
                 ExpandedItems.Add(item);
             }
-            await ItemExpanded.InvokeAsync(item);
+            OnItemExpanded?.Invoke(item);
         }
 
         public bool IsExpanded(T item)

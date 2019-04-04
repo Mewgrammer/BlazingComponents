@@ -25,7 +25,7 @@ namespace Cloud_In_A_Box.Components
         public Func<int, Task<bool>> CollapseAsyncDelegate { get; set; } = null;
 
 
-        protected async override Task OnInitAsync()
+        protected override async Task OnInitAsync()
         {
             if (!Nodes.Any())
             {
@@ -35,8 +35,11 @@ namespace Cloud_In_A_Box.Components
 
         protected void OnNodeClick(UIMouseEventArgs e, UiTreeNode<T> node)
         {
-            node.IsSelected = !node.IsSelected;
-            SelectChangeDelegate(e, node);
+            if (!Nodes.Any()) // Only Nodes without children can be selected
+            {
+                node.IsSelected = !node.IsSelected;
+                SelectChangeDelegate(e, node);
+            }
         }
 
         protected async void OnExpandClick(UIMouseEventArgs e, UiTreeNode<T> node)

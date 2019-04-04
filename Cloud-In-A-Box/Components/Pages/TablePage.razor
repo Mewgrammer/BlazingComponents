@@ -105,10 +105,10 @@
         </div>
     </div>
     <div class="row">
-        <button class="btn" onclick="@(() => _tableComponent?.SelectAll())"> Select all </button>
-        <button class="btn ml-2" onclick="@(() => _tableComponent?.DeselectAll())"> Deselect all </button>
-        <button class="btn ml-2" onclick="@(() => _tableComponent?.ExpandAll())"> Expand all </button>
-        <button class="btn ml-2" onclick="@(() => _tableComponent?.CollapseAll())"> Collapse all </button>
+        <button class="btn btn-primary" onclick="@(() => _tableComponent?.SelectAll())"> Select all </button>
+        <button class="btn btn-secondary ml-2" onclick="@(() => _tableComponent?.DeselectAll())"> Deselect all </button>
+        <button class="btn btn-primary ml-2" onclick="@(() => _tableComponent?.ExpandAll())"> Expand all </button>
+        <button class="btn btn-secondary ml-2" onclick="@(() => _tableComponent?.CollapseAll())"> Collapse all </button>
     </div>
     <div class="row">
         <div class="col">
@@ -142,7 +142,6 @@
         </div>
     </div>
 </div>
-<h5>Template Context is buggy in preview 3</h5>
 
 @functions
 {
@@ -181,6 +180,8 @@
     {
         Console.WriteLine("Subscribe to Table Component Events");
         _tableRendered = true;
+        _tableComponent.OnItemExpanded += OnTablePersonExpanded;
+        _tableComponent.OnItemSelected += OnTablePersonSelected;
     }
 
     private void OnTablePersonSelected(Person person)
