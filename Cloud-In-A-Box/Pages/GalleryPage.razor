@@ -1,0 +1,44 @@
+﻿@using System
+@using System.Collections.Generic
+@page "/gallery"
+<div class="container-fluid mt-5 bg-dark text-white">
+    <h4>Gallery</h4>
+    <Gallery ref="_gallery" Items="GalleryItems" />
+    @if (_gallery?.CurrentItem != null)
+    {
+        <span>
+            Title: @_gallery.CurrentItem.Title<br />
+            SubTitle: @_gallery.CurrentItem.Subtitle<br />
+            ImgSrc: @_gallery.CurrentItem.ImageSource<br />
+            Data: @_gallery.CurrentItem.Data<br />
+        </span>
+    }
+    <button class="btn btn-dark" onclick="@((e) =>_gallery.Back(e))">Back</button>
+    <button class="btn btn-dark" onclick="@((e) => _gallery.Forward(e))">Forward</button>
+</div>
+
+@functions
+{
+    public List<GalleryItem<string>> GalleryItems { get; set; } = new List<GalleryItem<string>>
+{
+        new GalleryItem<string> { Data = "Hello I am item 1", ImageSource = "http://wowslider.com/sliders/demo-93/data1/images/sunset.jpg", Subtitle = "Subtile of Item 1", Title = "Item 1"},
+        new GalleryItem<string> { Data = "Hello I am item 2", ImageSource = "http://wowslider.com/sliders/demo-93/data1/images/sunset.jpg", Subtitle = "Subtile of Item 2", Title = "Item 2"},
+        new GalleryItem<string> { Data = "Hello I am item 3", ImageSource = "http://wowslider.com/sliders/demo-93/data1/images/sunset.jpg", Subtitle = "Subtile of Item 3", Title = "Item 3"}
+    };
+    private Gallery<string> _gallery;
+
+    protected override void OnInit()
+    {
+    }
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("Subscribe to Table Component Events");
+        _gallery.OnItemSelected += OnGalleryItemSelected;
+    }
+
+    private void OnGalleryItemSelected(GalleryItem<string> item)
+    {
+        Console.WriteLine($"Item Selected: {item.Title}");
+    }
+}

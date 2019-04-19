@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cloud_In_A_Box.Components.Models
+﻿namespace Cloud_In_A_Box.Models
 {
     public enum SettingsEnum
     {
