@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
-@using Cloud_In_A_Box.Components;
-@using Cloud_In_A_Box.Models;
+@using Cloud_In_A_Box.Components.Areas.Components;
+@using Cloud_In_A_Box.Components.Models;
+
 
 <div class="container-fluid">
     <div class="row w-100 bg-dark text-white">
@@ -8,12 +9,9 @@
         <div class="justify-content-center w-auto">
             <NavBar NavLinks="NavLinks" />
         </div>
-        <div class="justify-content-end float-right mr-2 ml-auto">
-            <Clock />
-        </div>
     </div>
     <div class="row w-100 h-100">
-        <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6">
+        <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6 text-dark">
             <!-- Side-Nav -->
             <NavMenu NavLinks="NavLinks" />
         </div>

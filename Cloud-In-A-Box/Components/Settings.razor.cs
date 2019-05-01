@@ -2,7 +2,6 @@
 using Cloud_In_A_Box.Models;
 using Cloud_In_A_Box.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using Newtonsoft.Json;
 
 namespace Cloud_In_A_Box.Components
@@ -14,18 +13,19 @@ namespace Cloud_In_A_Box.Components
         [Inject]
         public SettingsService SettingsService { get; set; }
 
-        [Inject]
-        public IJSRuntime JsRuntime { get; set; }
-
-        protected override async Task OnInitAsync()
+        protected override void OnInit()
         {
             ApplicationSettings = SettingsService.Settings;
-            await JsRuntime.InvokeAsync<string>("initSelects", "");
         }
 
         public string GetAppSettingsAsJson()
         {
             return JsonConvert.SerializeObject(ApplicationSettings, Formatting.Indented);
+        }
+
+        public void ApplySettings()
+        {
+            StateHasChanged();
         }
     }
 }

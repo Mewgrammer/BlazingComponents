@@ -1,9 +1,9 @@
 @using System.Collections.Generic
-@using Microsoft.AspNetCore.Components
-@using Cloud_In_A_Box.Models;
+@using Cloud_In_A_Box.Components.Models;
+@using Microsoft.AspNetCore.Components.Routing
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Insite</a>
+    <a class="navbar-brand" href="#">@Title</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,6 +21,9 @@
 </nav>
 
 @functions {
+
+    [Parameter]
+    public string Title { get; set; } = "Cloud In A Box";
 
     [Parameter]
     private List<NavLinkItem> NavLinks { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Routing;
 
-namespace Cloud_In_A_Box.Models
+namespace Cloud_In_A_Box.Components.Models
 {
     public class NavLinkItem
     {

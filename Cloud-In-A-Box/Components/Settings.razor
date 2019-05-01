@@ -1,6 +1,5 @@
 ﻿@using System
 @using System.Linq
-@using Microsoft.JSInterop;
 @using Cloud_In_A_Box.Models;
 @inject IJSRuntime JsRuntime;
 @inherits SettingsBase
@@ -141,8 +140,8 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group">
-                <button class="btn waves-effect waves-light indigo text-white">Save</button>
+            <div class="form-row">
+                <button class="btn btn-primary"  type="button" onclick="@ApplySettings">Apply</button>
             </div>
         </form>
     </div>
