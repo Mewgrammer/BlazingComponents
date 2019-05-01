@@ -4,20 +4,14 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Cloud_In_A_Box.Authentication.Interfaces;
+using Cloud_In_A_Box.Authentication.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Cloud_In_A_Box.Components.Areas.Authentication.Handlers
+namespace Cloud_In_A_Box.Authentication.Handlers
 {
-
-    public interface IUserService
-    {
-        public UserState Authenticate(UserCredentials credentials);
-        public Task<UserState> AuthenticateAsync(UserCredentials credentials);
-
-    }
-
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly IUserService _userService;
@@ -57,7 +51,7 @@ namespace Cloud_In_A_Box.Components.Areas.Authentication.Handlers
                 return AuthenticateResult.Fail("Invalid Credentials");
 
             var claims = new[] {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, user.DisplayName),
             };
             var identity = new ClaimsIdentity(claims, Scheme.Name);

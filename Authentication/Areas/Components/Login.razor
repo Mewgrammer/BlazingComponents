@@ -1,4 +1,9 @@
-﻿@using Microsoft.AspNetCore.Components
+﻿@using Cloud_In_A_Box.Authentication.Models
+@using Microsoft.AspNetCore.Components
+@using Cloud_In_A_Box.Authentication.Areas.Components
+@inject Microsoft.AspNetCore.Components.IUriHelper UriHelper
+
+
 <div class="user-info">
     @if (UserState.CurrentUser == null)
     {
@@ -16,11 +21,12 @@
         <form onsubmit="@SignIn">
             <div class="form-group">
                 <label for="usernameInput">Username</label>
-                <input type="text" id="usernameInput" class="form-control" placeholder="Username" bind="@Username" />
+                <input type="text" id="usernameInput" class="form-control" placeholder="Username" bind="@Username" required />
             </div>
             <div class="form-group">
                 <label for="passwordInput">Password</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Password" bind="@Password"/>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password" bind="@Password" required />
+                <span class="text-danger">@ErrorMessage</span>
             </div>
             <button class="btn btn-primary">Sign in</button>
         </form>
@@ -32,12 +38,24 @@
     [CascadingParameter]
     UserStateProvider UserState { get; set; }
 
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string Username { get; set; } = "";
+    public string Password { get; set; } = "";
 
+    public string ErrorMessage { get; set; } = "";
+
+    protected override void OnInit()
+    {
+        Username = UserState?.CurrentUser?.DisplayName;
+    }
 
     public async void SignIn()
     {
+        ErrorMessage = "";
         await UserState.SignIn(new UserCredentials { Username = Username, Password = Password });
+        if(!UserState.IsLoggedIn)
+        {
+            ErrorMessage = "Login failed";
+        }
+        StateHasChanged();
     }
 }

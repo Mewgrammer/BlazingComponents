@@ -12,9 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Hosting;
 using System.Net.Http;
+using Cloud_In_A_Box.Authentication.Handlers;
 using Microsoft.AspNetCore.Authentication;
-using Cloud_In_A_Box.Components.Areas.Authentication.Handlers;
 using Microsoft.AspNetCore.Components;
+using Cloud_In_A_Box.Authentication.Interfaces;
 
 namespace Cloud_In_A_Box
 {

@@ -1,16 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Cloud_In_A_Box.Authentication.Models;
+using Newtonsoft.Json;
 
-namespace Cloud_In_A_Box.Components.Areas.Authentication
+namespace Cloud_In_A_Box.Authentication.Helpers
 {
-    class Authenticator
+    public static class Authenticator
     {
-
         public static async Task<UserState> BasicAuth(string url, UserCredentials credentials)
         {
             var byteArray = Encoding.ASCII.GetBytes($"{credentials.Username}:{credentials.Password}");

@@ -1,0 +1,73 @@
+﻿@using Cloud_In_A_Box.Authentication.Models
+@using Microsoft.AspNetCore.Components
+@using Cloud_In_A_Box.Authentication.Areas.Components
+
+@inject Microsoft.AspNetCore.Components.IUriHelper UriHelper
+
+
+<div class="user-info">
+    @if (UserState.CurrentUser == null)
+    {
+        <text>...</text>
+    }
+    else if (UserState.CurrentUser.IsLoggedIn)
+    {
+        <div>
+            <span class="username">You are currently logged in as @UserState.CurrentUser.DisplayName</span>
+            <button class="btn btn-primary" onclick="@UserState.SignOut">Sign out</button>
+        </div>
+    }
+    else
+    {
+        <form onsubmit="@RegisterUser">
+            <div class="form-group">
+                <label for="usernameInput">Username</label>
+                <input type="text" id="usernameInput" class="form-control" placeholder="Username" bind="@Username" required />
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Password</label>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password" bind="@Password" required />
+            </div>
+            <div class="form-group">
+                <label for="confirmPasswordInput">Password</label>
+                <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirm Password" bind="@ConfirmPassword" required />
+            </div>
+            <span class="text-danger">@ErrorMessage</span>
+            <button class="btn btn-primary">RegisterUser</button>
+        </form>
+    }
+</div>
+
+@functions {
+
+    [CascadingParameter]
+    UserStateProvider UserState { get; set; }
+
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string ConfirmPassword { get; set; }
+
+    public string ErrorMessage { get; set; } = "";
+
+
+    public async void RegisterUser()
+    {
+        if (Password != ConfirmPassword)
+        {
+            ErrorMessage = "Passwords need to match";
+            StateHasChanged();
+            return;
+        }
+        ErrorMessage = "";
+        await UserState.Register(new UserCredentials { Username = Username, Password = Password });
+        if (UserState.CurrentUser == null)
+        {
+            ErrorMessage = "Registration failed";
+        }
+        else
+        {
+            UriHelper.NavigateTo("/login");
+        }
+        StateHasChanged();
+    }
+}

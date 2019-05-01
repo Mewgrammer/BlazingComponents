@@ -6,16 +6,16 @@
 <div class="container-fluid">
     <div class="row w-100 bg-dark text-white">
         <!-- Header -->
-        <div class="justify-content-center w-auto">
+        <div class="justify-content-center w-auto bg-dark">
             <NavBar NavLinks="NavLinks" />
         </div>
     </div>
     <div class="row w-100 h-100">
-        <div class="col-xl-1 col-lg-2 col-md-3 col-sm-4 col-xs-6 text-dark">
+        <div class="col-xl-1 col-lg-4 col-md-4 col-sm-4 col-xs-6 text-white bg-dark">
             <!-- Side-Nav -->
             <NavMenu NavLinks="NavLinks" />
         </div>
-        <div class="w-auto">
+        <div class="container-fluid w-auto">
             <!-- Router Outlet -->
             @Body
         </div>
@@ -37,9 +37,9 @@
         new NavLinkItem { DisplayName = "Settings", Href = "settings", Icon = "fas fa-cog" },
         new NavLinkItem { DisplayName = "Gallery", Href = "gallery", Icon = "fas fa-image" },
         new NavLinkItem { DisplayName = "Login", Href = "login", Icon = "fas fa-user" },
+        new NavLinkItem { DisplayName = "Register", Href = "register", Icon = "fas fa-user" },
         new NavLinkItem { DisplayName = "Tree", Href = "tree", Icon = "fas fa-tree" },
-
-    };
+};
 }
 
 

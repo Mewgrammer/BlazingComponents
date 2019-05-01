@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloud-In-A-Box", "Cloud-In-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloud-In-A-Box.ComponentLib", "Components\Cloud-In-A-Box.ComponentLib.csproj", "{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloud-In-A-Box.Authentication", "Authentication\Cloud-In-A-Box.Authentication.csproj", "{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

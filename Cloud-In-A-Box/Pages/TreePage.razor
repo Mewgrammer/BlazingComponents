@@ -7,7 +7,7 @@
 
 <h1>Sample Tree</h1>
 
-<UITree Nodes="@_nodes">
+<UITree Nodes="@_nodes" ExpandAsyncDelegate="@OnExpand" CollapseAsyncDelegate="@OnCollapse" LazyLoadNodesAsyncDelegate="@LoadNodes">
 </UITree>
 
 @functions {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cloud_In_A_Box.Components.Areas.Authentication
+﻿namespace Cloud_In_A_Box.Authentication.Models
 {
     public class UserState
     {

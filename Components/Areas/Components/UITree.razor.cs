@@ -16,7 +16,7 @@ namespace Cloud_In_A_Box.Components.Areas.Components
         public Action<UIMouseEventArgs, UiTreeNode<T>> SelectChangeDelegate { get; set; } = null;
 
         [Parameter]
-        public Func<int?, Task<List<UiTreeNode<T>>>> LazyLoadNodesAsyncDelegate { get; set; }
+        public Func<int?, Task<List<UiTreeNode<T>>>> LazyLoadNodesAsyncDelegate { get; set; } = null;
 
         [Parameter]
         public Func<int, Task<bool>> ExpandAsyncDelegate { get; set; } = null;
@@ -27,7 +27,7 @@ namespace Cloud_In_A_Box.Components.Areas.Components
 
         protected override async Task OnInitAsync()
         {
-            if (!Nodes.Any())
+            if (!Nodes.Any() && LazyLoadNodesAsyncDelegate != null)
             {
                 Nodes = await LazyLoadNodesAsyncDelegate(0);
             }
@@ -35,21 +35,22 @@ namespace Cloud_In_A_Box.Components.Areas.Components
 
         protected void OnNodeClick(UIMouseEventArgs e, UiTreeNode<T> node)
         {
-            if (!Nodes.Any()) // Only Nodes without children can be selected
+            if (!node.Children.Any()) // Only Nodes without children can be selected
             {
                 node.IsSelected = !node.IsSelected;
-                SelectChangeDelegate(e, node);
+                if(SelectChangeDelegate != null)
+                    SelectChangeDelegate(e, node);
             }
         }
 
         protected async void OnExpandClick(UIMouseEventArgs e, UiTreeNode<T> node)
         {
             node.IsExpanded = !node.IsExpanded;
-            if (node.IsExpanded)
+            if (node.IsExpanded && ExpandAsyncDelegate != null)
             {
                 var expandResult = await ExpandAsyncDelegate(node.Id);
             }
-            else
+            else if(CollapseAsyncDelegate != null)
             {
                 var collapseResult = await CollapseAsyncDelegate(node.Id);
             }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Cloud_In_A_Box.Authentication.Helpers;
+using Cloud_In_A_Box.Authentication.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Cloud_In_A_Box.Components.Areas.Authentication
+namespace Cloud_In_A_Box.Authentication.Areas.Components
 {
 
     public class UserStateProviderBase : ComponentBase
@@ -45,6 +47,13 @@ namespace Cloud_In_A_Box.Components.Areas.Authentication
             StateHasChanged();
             var url = HttpClient.BaseAddress.AbsoluteUri + "logout";
             CurrentUser = await HttpClient.PutJsonAsync<UserState>(url, null);
+            StateHasChanged();
+        }
+
+        public async Task Register(UserCredentials credentials)
+        {
+            var url = HttpClient.BaseAddress.AbsoluteUri + "register";
+            CurrentUser = await HttpClient.PostJsonAsync<UserState>(url, credentials);
             StateHasChanged();
         }
     }
