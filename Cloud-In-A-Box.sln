@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloud-In-A-Box", "Cloud-In-A-Box\Cloud-In-A-Box.csproj", "{99E137EA-82CE-476D-BEE8-B38C8DF66756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloud-In-A-Box", "Cloud-In-A-Box\Cloud-In-A-Box.csproj", "{99E137EA-82CE-476D-BEE8-B38C8DF66756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloud-In-A-Box.Components", "Components\Cloud-In-A-Box.Components.csproj", "{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cloud-In-A-Box.ComponentLib", "Components\Cloud-In-A-Box.ComponentLib.csproj", "{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
