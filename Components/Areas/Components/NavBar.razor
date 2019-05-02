@@ -12,7 +12,7 @@
         <div class="navbar-nav">
             @foreach (var navlink in NavLinks)
             {
-                <NavLink class="nav-item nav-link" href="@navlink.Href" Match="@navlink.Match">
+                <NavLink class="nav-item nav-link pt-0 pb-0" href="@navlink.Href" Match="@navlink.Match">
                     <i class="@navlink.Icon pr-2"></i>
                     <span class="pr-2">@navlink.DisplayName</span>
                 </NavLink>
