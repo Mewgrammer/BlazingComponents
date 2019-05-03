@@ -1,0 +1,16 @@
+﻿@typeparam T
+@inherits UIListBase<T>
+
+
+<ul class="list-group">
+    @foreach (var item in Items)
+    {
+        <li class="@GetItemClass(item)" onclick="@( () => OnItemClick(item))">
+            @ItemTemplate(item)
+            @if (IsExpanded(item) && ExpandedItemTemplate != null)
+            {
+                @ExpandedItemTemplate(item);
+            }
+        </li>
+    }
+</ul>

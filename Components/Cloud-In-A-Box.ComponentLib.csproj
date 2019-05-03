@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Sotsera.Blazor.Toaster" Version="0.9.0-preview-3" />
   </ItemGroup>
 
 </Project>

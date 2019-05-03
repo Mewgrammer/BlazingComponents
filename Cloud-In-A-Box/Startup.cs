@@ -16,6 +16,8 @@ using Cloud_In_A_Box.Authentication.Handlers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components;
 using Cloud_In_A_Box.Authentication.Interfaces;
+using Cloud_In_A_Box.Components.Services;
+using Cloud_In_A_Box.Components;
 
 namespace Cloud_In_A_Box
 {
@@ -44,8 +46,11 @@ namespace Cloud_In_A_Box
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<SettingsService>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddScoped<ToastService>();
+            services.AddComponentLib();
 
-            services.AddScoped<HttpClient>(s =>
+
+            services.AddScoped(s =>
             {
                 // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
                 var uriHelper = s.GetRequiredService<IUriHelper>();
@@ -54,7 +59,6 @@ namespace Cloud_In_A_Box
                     BaseAddress = new Uri(uriHelper.GetBaseUri())
                 };
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

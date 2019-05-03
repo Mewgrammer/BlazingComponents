@@ -1,7 +1,5 @@
-﻿@using Cloud_In_A_Box.Authentication.Models
-@using Microsoft.AspNetCore.Components
-@using Cloud_In_A_Box.Authentication.Areas.Components
-@inject Microsoft.AspNetCore.Components.IUriHelper UriHelper
+﻿@using Microsoft.AspNetCore.Components
+@inherits LoginBase
 
 
 <div class="user-info">
@@ -32,30 +30,3 @@
         </form>
     }
 </div>
-
-@functions {
-
-    [CascadingParameter]
-    UserStateProvider UserState { get; set; }
-
-    public string Username { get; set; } = "";
-    public string Password { get; set; } = "";
-
-    public string ErrorMessage { get; set; } = "";
-
-    protected override void OnInit()
-    {
-        Username = UserState?.CurrentUser?.DisplayName;
-    }
-
-    public async void SignIn()
-    {
-        ErrorMessage = "";
-        await UserState.SignIn(new UserCredentials { Username = Username, Password = Password });
-        if(!UserState.IsLoggedIn)
-        {
-            ErrorMessage = "Login failed";
-        }
-        StateHasChanged();
-    }
-}

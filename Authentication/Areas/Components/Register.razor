@@ -1,8 +1,6 @@
 ﻿@using Cloud_In_A_Box.Authentication.Models
 @using Microsoft.AspNetCore.Components
-@using Cloud_In_A_Box.Authentication.Areas.Components
-
-@inject Microsoft.AspNetCore.Components.IUriHelper UriHelper
+@inherits RegisterBase
 
 
 <div class="user-info">
@@ -37,37 +35,3 @@
         </form>
     }
 </div>
-
-@functions {
-
-    [CascadingParameter]
-    UserStateProvider UserState { get; set; }
-
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public string ConfirmPassword { get; set; }
-
-    public string ErrorMessage { get; set; } = "";
-
-
-    public async void RegisterUser()
-    {
-        if (Password != ConfirmPassword)
-        {
-            ErrorMessage = "Passwords need to match";
-            StateHasChanged();
-            return;
-        }
-        ErrorMessage = "";
-        await UserState.Register(new UserCredentials { Username = Username, Password = Password });
-        if (UserState.CurrentUser == null)
-        {
-            ErrorMessage = "Registration failed";
-        }
-        else
-        {
-            UriHelper.NavigateTo("/login");
-        }
-        StateHasChanged();
-    }
-}
