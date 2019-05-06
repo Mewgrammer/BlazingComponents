@@ -7,5 +7,7 @@
         public string DisplayName { get; set; }
         public bool IsLoggedIn { get; set; }
 
+        public EUserRole Role { get; set; }
+
     }
 }
