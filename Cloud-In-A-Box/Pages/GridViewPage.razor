@@ -1,0 +1,30 @@
+﻿@page "/gridView"
+
+
+<h2>Grid View</h2>
+
+<GridView Data="@BooleanArray" ref="@_booleanGridViewRef">
+    <ChildContent>
+        hello
+    </ChildContent>
+</GridView>
+
+<button class="btn btn-primary">Read Data</button>
+
+
+
+@functions{
+
+    private GridView<bool> _booleanGridViewRef;
+    public bool[] BooleanArray = new bool[] { true, true, true, false, false, true, false, true, false };
+
+    public bool[] ReadBooleanData()
+    {
+        if (_booleanGridViewRef == null)
+        {
+            return new bool[0];
+        }
+        var data = _booleanGridViewRef.TwoDimData;
+        return _booleanGridViewRef.FlattenTwoDimArray(_booleanGridViewRef.TwoDimData);
+    }
+}
