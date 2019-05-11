@@ -1,0 +1,32 @@
+﻿@page "/register"
+
+@inject Sotsera.Blazor.Toaster.IToaster Toaster
+
+<h1>Register</h1>
+
+<Register ref="_register" />
+
+@functions {
+
+    private RegisterBase _register;
+
+    protected override void OnAfterRender()
+    {
+        if (_register != null)
+        {
+            _register.OnRegistrationResult += OnRegisterResult;
+        }
+    }
+
+    public void OnRegisterResult(bool success, UserState user)
+    {
+        if(success)
+        {
+            Toaster.Success($"Registered as {user.DisplayName}");
+        }
+        else
+        {
+            Toaster.Error($"Registration failed");
+        }
+    }
+}

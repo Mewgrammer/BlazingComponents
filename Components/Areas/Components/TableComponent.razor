@@ -1,0 +1,30 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@typeparam T
+@inherits TableComponentBase<T>
+<div>
+    <table class="table">
+        <thead>
+            <tr>@TableHeader</tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Items)
+            {
+                <tr class="@GetRowClass(item)" ondblclick="@( e => ExpandItem(item) )" onclick="@( e => SelectItem(item))">
+                    @RowTemplate(item)
+                </tr>
+                if (IsExpanded(item))
+                {
+                    <tr>
+                        @ExpandedRowTemplate(item)
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>@TableFooter</tr>
+        </tfoot>
+    </table>
+</div>

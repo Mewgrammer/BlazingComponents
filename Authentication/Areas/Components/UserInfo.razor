@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Components
+@using Cloud_In_A_Box.Authentication.Areas.Components
+
+@inject Microsoft.AspNetCore.Components.IUriHelper UriHelper
+
+@if (UserState.CurrentUser == null)
+{
+    <text>...</text>
+}
+else if (UserState.IsLoggedIn)
+{
+    <div>
+        <span>UserState.CurrentUser.DisplayName</span>
+        <button class="btn btn-outline-primary" onclick="@UserState.SignOut">Sign out</button>
+    </div>
+}
+else
+{
+    <button onclick="@OnSignInClick" class="btn btn-primary">Sign in</button>
+}
+
+@functions {
+    [CascadingParameter]
+    UserStateProvider UserState { get; set; }
+
+    public void OnSignInClick()
+    {
+        UriHelper.NavigateTo("/login");
+    }
+}

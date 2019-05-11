@@ -1,0 +1,11 @@
+﻿@*
+    The Router component displays whichever component has a @page
+    directive matching the current URI.
+*@
+@using Sotsera.Blazor.Toaster
+
+
+    <UserStateProvider>
+        <Router AppAssembly="typeof(Startup).Assembly" />
+        <ToastContainer />
+    </UserStateProvider>

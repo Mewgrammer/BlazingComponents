@@ -1,0 +1,22 @@
+@using System.Collections.Generic
+@using Cloud_In_A_Box.Components.Models;
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+
+<ul class="nav nav-pills flex-column">
+    @foreach (var navlink in NavLinks)
+    {
+        <li class="nav-item">
+            <NavLink class="nav-link" href="@navlink.Href" Match="@navlink.Match">
+                <i class="@navlink.Icon pr-2"></i>
+                <span class="ml-2">@navlink.DisplayName</span>
+            </NavLink>
+        </li>
+    }
+</ul>
+
+@functions {
+
+    [Parameter]
+    private List<NavLinkItem> NavLinks { get; set; }
+}

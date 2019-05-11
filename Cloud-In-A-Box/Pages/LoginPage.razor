@@ -1,0 +1,32 @@
+@page "/login"
+@inject Sotsera.Blazor.Toaster.IToaster Toaster
+
+<h1>Login</h1>
+
+<Login ref="_login" />
+
+@functions{
+
+    private LoginBase _login;
+
+    protected override void OnAfterRender()
+    {
+        if (_login != null)
+        {
+            _login.OnLoginResult += OnLoginResult;
+        }
+    }
+
+    public void OnLoginResult(bool success, UserState user)
+    {
+        if(success)
+        {
+            Toaster.Success($"Logged-in as {user.DisplayName}");
+        }
+        else
+        {
+            Toaster.Error($"Login failed");
+        }
+    }
+
+}

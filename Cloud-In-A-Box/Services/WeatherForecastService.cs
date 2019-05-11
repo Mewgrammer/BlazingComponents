@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Cloud_In_A_Box.Models;
 
 namespace Cloud_In_A_Box.Services
 {
