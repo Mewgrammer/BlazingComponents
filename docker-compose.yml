@@ -2,7 +2,7 @@ version: '3'
 
 services:
     razor-components:
-        image: mewgrammer/cloudinabox:latest
+        image: mewgrammer/cloud-in-a-box:latest
         restart: always
         ports:
             - 443:443
