@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blazor-lib-deployment
+  labels:
+    app: blazor-lib
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blazor-lib
+  template:
+    metadata:
+      labels:
+        app: blazor-lib
+    spec:
+      containers:
+      - name: blazor-lib
+        image: mewgrammer/cloud-in-a-box:latest
+        ports:
+        - containerPort: 80
