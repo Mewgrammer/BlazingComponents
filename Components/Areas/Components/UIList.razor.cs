@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
 
-namespace Cloud_In_A_Box.Components.Areas.Components
+namespace BlazorEssentials.ComponentLib.Areas.Components
 {
     public class UIListBase<T> : ComponentBase
     {

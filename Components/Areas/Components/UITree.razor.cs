@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cloud_In_A_Box.Components.Models;
+using BlazorEssentials.ComponentLib.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace Cloud_In_A_Box.Components.Areas.Components
+namespace BlazorEssentials.ComponentLib.Areas.Components
 {
     public class UITreeBase<T> : ComponentBase
     {

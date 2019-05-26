@@ -1,0 +1,197 @@
+﻿@page "/table"
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using BlazorEssentials.ComponentLib.Areas.Components
+@using BlazorEssentials.Demo.Models
+
+<div>
+    <h3>
+        Autotable with selectable rows using generic data source. columns and rows generated using Reflection on Data Source
+    </h3>
+    <label>
+        Data Source
+        <select bind="@SelectedDataSource" class="form-control">
+            <option value="Persons" selected>Persons</option>
+            <option value="Cars">Cars</option>
+        </select>
+    </label>
+    @switch (SelectedDataSource)
+    {
+        case "Persons":
+    <AutoTable Items="Persons" Selectable="true" MultiSelect="false">
+        <ExpandedRowTemplate Context="person">
+            <td colspan="999">
+                @($"{person.FirstName} {person.LastName} born on {person.BirthDate}")
+            </td>
+        </ExpandedRowTemplate>
+    </AutoTable>
+            break;
+        case "Cars":
+    <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
+        <ExpandedRowTemplate Context="car">
+            <td colspan="999">
+                @($"A {car.Manufacturer} {car.Model} with {car.Horsepower} PS and a fuel consumption of {car.FuelConsumption} l/100km priced at {car.Price}€")
+            </td>
+        </ExpandedRowTemplate>
+    </AutoTable>
+            break;
+    }
+</div>
+<div>
+    <h3>
+        expandable & selectable table with generic Data source. Row, Header and Footer Templates using RenderFragments
+    </h3>
+    <TableComponent ref="_tableComponent" Items="Persons" Expandable="_tableExpandable" Selectable="_tableSelectable" MultiSelect="_tableMultiSelect" MultiExpand="_tableMultiExpand">
+        <TableHeader>
+            <th></th>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>BirthDate</th>
+        </TableHeader>
+        <RowTemplate Context="person">
+            <td><button class="btn btn-sm btn-light" onclick="@(() => _tableComponent?.ExpandItem(person))">Expand</button></td>
+            <td>@person.Id</td>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.BirthDate</td>
+        </RowTemplate>
+        <ExpandedRowTemplate Context="person">
+            <td colspan="6">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ToString</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @person
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </ExpandedRowTemplate>
+    </TableComponent>
+
+    <div class="row">
+        <div class="custom-control custom-switch ml-5">
+            <input class="custom-control-input" id="check-option-1" type="checkbox" bind="@_tableSelectable" />
+            <label class="custom-control-label" for="check-option-1">
+                Selectable
+            </label>
+        </div>
+        <div class="custom-control custom-switch ml-5">
+            <input class="custom-control-input" id="check-option-2" type="checkbox" bind="@_tableExpandable" />
+            <label class="custom-control-label" for="check-option-2">
+                Expandable
+            </label>
+        </div>
+        <div class="custom-control custom-switch ml-5">
+            <input class="custom-control-input" id="check-option-3" type="checkbox" bind="@_tableMultiSelect" />
+            <label class="custom-control-label" for="check-option-3">
+                Multi-Select
+            </label>
+        </div>
+        <div class="custom-control custom-switch ml-5">
+            <input class="custom-control-input" id="check-option-4" type="checkbox" bind="@_tableMultiExpand" />
+            <label class="custom-control-label" for="check-option-4">
+                Multi-Expand
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" onclick="@(() => _tableComponent?.SelectAll())"> Select all </button>
+        <button class="btn btn-secondary ml-2" onclick="@(() => _tableComponent?.DeselectAll())"> Deselect all </button>
+        <button class="btn btn-primary ml-2" onclick="@(() => _tableComponent?.ExpandAll())"> Expand all </button>
+        <button class="btn btn-secondary ml-2" onclick="@(() => _tableComponent?.CollapseAll())"> Collapse all </button>
+    </div>
+    <div class="row">
+        <div class="col">
+            @if (_tableComponent?.SelectedItems.Any() ?? false)
+            {
+            <div class="row">
+                <h5>Selected Persons</h5>
+            </div>
+            <ul class="list-group">
+                @foreach (var selectedItem in _tableComponent?.SelectedItems)
+                    {
+                <li class="list-group-item">@selectedItem</li>
+                    }
+            </ul>
+
+            }
+        </div>
+        <div class="col">
+            @if (_tableComponent?.ExpandedItems.Any() ?? false)
+            {
+            <div class="row">
+                <h5>Expanded Persons</h5>
+            </div>
+            <ul class="list-group">
+                @foreach (var expandedItem in _tableComponent?.ExpandedItems)
+                    {
+                <li class="list-group-item">@expandedItem</li>
+                    }
+            </ul>
+            }
+        </div>
+    </div>
+</div>
+
+@functions
+{
+
+    public IReadOnlyList<Person> Persons { get; private set; } = new List<Person>
+    {
+        new Person { Id = 1, FirstName = "Michael", LastName = "Mew", BirthDate = new DateTime(1995, 10, 6)},
+        new Person { Id = 2, FirstName = "Michael1", LastName = "Mew1", BirthDate = new DateTime(1995, 10, 7)},
+        new Person { Id = 3, FirstName = "Michael2", LastName = "Mew2", BirthDate = new DateTime(1995, 10, 8)},
+        new Person { Id = 4, FirstName = "Michael3", LastName = "Mew3", BirthDate = new DateTime(1995, 10, 9)},
+    };
+
+    public IReadOnlyList<Car> Cars { get; private set; } = new List<Car>
+{
+        new Car { Model = "A-Class", Manufacturer = "Mercedes-Benz", FuelConsumption = 6.7f, Horsepower = 163, Price = 52000},
+        new Car { Model = "ForFour", Manufacturer = "Smart", FuelConsumption = 5.5f, Horsepower = 90, Price = 18000},
+        new Car { Model = "C-Zero", Manufacturer = "Citroen", FuelConsumption = 0, Horsepower = 68, Price = 13000},
+    };
+
+    public string SelectedDataSource = "Persons";
+
+
+    private TableComponentBase<Person> _tableComponent;
+    private Person ButtonClickedPerson { get; set; }
+    private bool _tableRendered;
+
+
+    private bool _tableSelectable = true;
+    private bool _tableExpandable = true;
+
+    private bool _tableMultiSelect;
+    private bool _tableMultiExpand;
+
+
+    protected override void OnAfterRender()
+    {
+        Console.WriteLine("Subscribe to Table Component Events");
+        _tableRendered = true;
+        _tableComponent.OnItemExpanded += OnTablePersonExpanded;
+        _tableComponent.OnItemSelected += OnTablePersonSelected;
+    }
+
+    private void OnTablePersonSelected(Person person)
+    {
+        Console.WriteLine($"Item Selected: {person.Id}");
+        this.StateHasChanged();
+    }
+
+    private void OnTablePersonExpanded(Person person)
+    {
+        Console.WriteLine($"Item expanded: {person.Id}");
+        this.StateHasChanged();
+    }
+}

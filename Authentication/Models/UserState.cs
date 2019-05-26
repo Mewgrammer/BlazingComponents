@@ -1,4 +1,4 @@
-﻿namespace Cloud_In_A_Box.Authentication.Models
+﻿namespace BlazorEssentials.Authentication.Models
 {
     public class UserState
     {

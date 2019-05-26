@@ -1,20 +1,23 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BlazorEssentials.Authentication.Controllers;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
-namespace Cloud_In_A_Box.Components
+namespace BlazorEssentials.Authentication
 {
     public static class AuthenticationExtensions
     {
-        public static void UseAddAuthenticationLib(this IApplicationBuilder app)
+        public static void UseBlazorEssentialsAuthWithMvc(this IApplicationBuilder app)
         {
-
+            app.UseMvc();
         }
-        public static void AddAuthenticationLib(this IServiceCollection services)
+        public static void AddBlazorEssentialsAuthWithMvc(this IServiceCollection services)
         {
-
+            services.AddMvc()
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            .AddApplicationPart(typeof(UserController).GetTypeInfo().Assembly)
+            .AddControllersAsServices();
         }
-}
+    }
 }

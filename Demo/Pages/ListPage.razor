@@ -1,0 +1,115 @@
+﻿@page "/list"
+@using BlazorEssentials.ComponentLib.Areas.Components
+@using BlazorEssentials.Demo.Models
+@inject Sotsera.Blazor.Toaster.IToaster Toaster
+
+<h1>Lists</h1>
+
+<UIList ref="_listRef" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
+    <ItemTemplate Context="item">
+        <span>@item.FirstName  @item.LastName , @item.BirthDate</span>
+        <button class="btn btn-outline-dark" onclick="@( () => ExpandItem(item))">Expand</button>
+    </ItemTemplate>
+    <ExpandedItemTemplate Context="item">
+        <ul class="list-group bg-dark text-white">
+            <li class="list-group-item list-group-item-dark text-white bg-dark">
+                <span>@item.ToString()</span>
+            </li>
+        </ul>
+    </ExpandedItemTemplate>
+</UIList>
+
+<form onsubmit="@OnAddItem">
+    <label>
+        First Name
+        <input class="form-control" type="text" bind="FirstName" placeholder="First Name" />
+    </label>
+    <label>
+        First Name
+        <input class="form-control" type="text" bind="LastName" placeholder="Last Name" />
+    </label>
+    <label> Birth Date
+        <input class="form-control" type="date" bind="BirthDate" />
+    </label>
+    <button class="btn btn-primary">Add Item</button>
+</form>
+
+<h5>List-Items</h5>
+
+@foreach (var item in ListItems)
+{
+<ul>
+    @if (_listRef?.IsSelected(item) ?? false)
+    {
+        if (_listRef.IsExpanded(item))
+        {
+            <li><b><u>@item</u></b></li>
+        }
+        else
+        {
+            <li><b>@item</b></li>
+        }
+    }
+    else
+    {
+        if (_listRef?.IsExpanded(item) ?? false)
+        {
+            <li><u>@item</u></li>
+        }
+        else
+        {
+            <li>@item</li>
+        }
+    }
+</ul>
+}
+
+@functions{
+
+    private UIListBase<Person> _listRef;
+
+    public IList<Person> ListItems { get; private set; } = new List<Person>
+    {
+        new Person { Id = 1, FirstName = "Michael", LastName = "Mew", BirthDate = new DateTime(1995, 10, 6)},
+        new Person { Id = 2, FirstName = "Michael1", LastName = "Mew1", BirthDate = new DateTime(1995, 10, 7)},
+        new Person { Id = 3, FirstName = "Michael2", LastName = "Mew2", BirthDate = new DateTime(1995, 10, 8)},
+        new Person { Id = 4, FirstName = "Michael3", LastName = "Mew3", BirthDate = new DateTime(1995, 10, 9)},
+    };
+
+    public string FirstName = "";
+    public string LastName = "";
+    public string BirthDate = DateTime.Now.ToString("g");
+
+
+    protected override void OnAfterRender()
+    {
+        if (_listRef != null)
+        {
+            _listRef.ItemExpanded += OnItemExpanded;
+            _listRef.ItemSelected += OnItemSelected;
+        }
+    }
+
+    public void ExpandItem(Person p)
+    {
+        _listRef.ExpandItem(p);
+        StateHasChanged();
+    }
+
+    public void OnAddItem(UIEventArgs e)
+    {
+        ListItems.Add(new Person() { Id= 0, FirstName = FirstName, LastName = LastName, BirthDate = DateTime.Parse(BirthDate) });
+        StateHasChanged();
+    }
+
+    public void OnItemExpanded(Person item)
+    {
+        StateHasChanged();
+    }
+
+    public void OnItemSelected(Person item)
+    {
+        StateHasChanged();
+    }
+
+}

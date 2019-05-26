@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Cloud_In_A_Box.Authentication.Models
+namespace BlazorEssentials.Authentication.Models
 {
     public class LoginForm
     {

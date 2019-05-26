@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Timers;
 
-namespace Cloud_In_A_Box.Components.Services
+namespace BlazorEssentials.ComponentLib.Services
 {
     public enum ToastLevel
     {
@@ -16,7 +14,7 @@ namespace Cloud_In_A_Box.Components.Services
     {
         public event Action<string, ToastLevel> OnShow;
         public event Action OnHide;
-        private Timer Countdown;
+        private Timer _countdown;
 
         public void ShowToast(string message, ToastLevel level)
         {
@@ -28,25 +26,23 @@ namespace Cloud_In_A_Box.Components.Services
         {
             SetCountdown();
 
-            if (Countdown.Enabled)
+            if (_countdown.Enabled)
             {
-                Countdown.Stop();
-                Countdown.Start();
+                _countdown.Stop();
+                _countdown.Start();
             }
             else
             {
-                Countdown.Start();
+                _countdown.Start();
             }
         }
 
         private void SetCountdown()
         {
-            if (Countdown == null)
-            {
-                Countdown = new Timer(5000);
-                Countdown.Elapsed += HideToast;
-                Countdown.AutoReset = false;
-            }
+            if (_countdown != null) return;
+            _countdown = new Timer(5000);
+            _countdown.Elapsed += HideToast;
+            _countdown.AutoReset = false;
         }
 
         private void HideToast(object source, ElapsedEventArgs args)
@@ -56,7 +52,7 @@ namespace Cloud_In_A_Box.Components.Services
 
         public void Dispose()
         {
-            Countdown?.Dispose();
+            _countdown?.Dispose();
         }
     }
 }

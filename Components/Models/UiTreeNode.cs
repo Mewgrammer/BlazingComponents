@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Cloud_In_A_Box.Components.Models
+namespace BlazorEssentials.ComponentLib.Models
 {
     public class UiTreeNode<T>
     {
