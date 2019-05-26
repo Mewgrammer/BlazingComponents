@@ -80,20 +80,20 @@
             <div class="form-row">
                 <div class="custom-control custom-switch ml-2">
                     <input class="custom-control-input" id="check-option-1" type="checkbox" bind="@ApplicationSettings.BoolOption1" />
-                    <label class="custom-control-label">
+                    <label class="custom-control-label" for="check-option-1">
                         Boolean Input 1
                     </label>
                 </div>
                 <div class="custom-control custom-switch ml-2">
                     <input class="custom-control-input" id="check-option-2" type="checkbox" bind="@ApplicationSettings.BoolOption2" />
-                    <label class="custom-control-label">
+                    <label class="custom-control-label" for="check-option-2">
                         Boolean Input 2
                     </label>
                 </div>
 
                 <div class="custom-control custom-switch ml-2">
                     <input class="custom-control-input" id="check-option-3" type="checkbox" bind="@ApplicationSettings.BoolOption3" />
-                    <label class="custom-control-label">
+                    <label class="custom-control-label" for="check-option-3">
                         Boolean Input3
                     </label>
                 </div>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <button class="btn btn-primary"  type="button" onclick="@ApplySettings">Apply</button>
+                <button class="btn btn-primary" type="button" onclick="@ApplySettings">Apply</button>
             </div>
         </form>
     </div>

@@ -1,5 +1,7 @@
 using System;
 using System.Net.Http;
+using System.Reflection;
+using BlazorEssentials.Authentication.Controllers;
 using BlazorEssentials.Authentication.Handlers;
 using BlazorEssentials.Authentication.Interfaces;
 using BlazorEssentials.ComponentLib;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -28,7 +31,9 @@ namespace BlazorEssentials.Demo
             });
             services.AddCors();
             services.AddMvc()
-                .AddNewtonsoftJson();
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddApplicationPart(typeof(UserController).GetTypeInfo().Assembly)
+                .AddControllersAsServices();
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
@@ -39,7 +44,7 @@ namespace BlazorEssentials.Demo
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<SettingsService>();
-            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IUserService, BasicUserService>();
             services.AddScoped<ToastService>();
             services.AddComponentLib();
 
