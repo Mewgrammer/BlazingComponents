@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /src
-COPY ["Demo/BlazorEssentials.Demo.csproj", "Cloud-In-A-Box/"]
+COPY ["Demo/BlazorEssentials.Demo.csproj", "BlazorEssentials/"]
 RUN dotnet restore "Demo/BlazorEssentials.Demo.csproj"
 COPY . .
-WORKDIR "/src/Cloud-In-A-Box"
+WORKDIR "/src/BlazorEssentials"
 RUN dotnet build "BlazorEssentials.Demo.csproj" -c Release -o /app
 
 FROM build AS publish
