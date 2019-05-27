@@ -19,16 +19,16 @@
     {
         <form onsubmit="@RegisterUser">
             <div class="form-group">
-                <label for="usernameInput">Username</label>
-                <input type="text" id="usernameInput" class="form-control" placeholder="Username" bind="@Username" required />
+                <label for="registerUsernameInput">Username</label>
+                <input type="text" id="registerUsernameInput" class="form-control" placeholder="Username" bind="@Username" required />
             </div>
             <div class="form-group">
-                <label for="passwordInput">Password</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Password" bind="@Password" required />
+                <label for="registerPasswordInput">Password</label>
+                <input type="password" class="form-control" id="registerPasswordInput" placeholder="Password" bind="@Password" required />
             </div>
             <div class="form-group">
-                <label for="confirmPasswordInput">Password</label>
-                <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirm Password" bind="@ConfirmPassword" required />
+                <label for="registerConfirmPasswordInput">Password</label>
+                <input type="password" class="form-control" id="registerConfirmPasswordInput" placeholder="Confirm Password" bind="@ConfirmPassword" required />
             </div>
             <span class="text-danger">@ErrorMessage</span>
             <button class="btn btn-primary">RegisterUser</button>
