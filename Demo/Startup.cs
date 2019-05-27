@@ -81,7 +81,7 @@ namespace BlazorEssentials.Demo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseHttpsRedirection();
+           
 
             app.UseStaticFiles();
 
