@@ -1,3 +1,6 @@
+[![Build status](https://michaelmew.visualstudio.com/BlazorEssentials/_apis/build/status/Build%20and%20push%20to%20NuGet)](https://michaelmew.visualstudio.com/BlazorEssentials/_build/latest?definitionId=7)
+
+[![Docker Container Build status](https://michaelmew.visualstudio.com/BlazorEssentials/_apis/build/status/BlazorEssentials-Docker%20container-CI)](https://michaelmew.visualstudio.com/BlazorEssentials/_build/latest?definitionId=8)
 
 ## Contents
 This Project contains a Component Library and Basic Authentication for Blazor. Components are styled using Bootstrap 4. As server-side Blazor does not support stylesheets in component libraries you will have to install them yourself -> Tutorial is provided below.
