@@ -39,7 +39,6 @@ namespace BlazorEssentials.Authentication.Areas.Components
             else
             {
                 OnRegistrationResult?.Invoke(true, UserState.CurrentUser);
-                UriHelper.NavigateTo("/login");
             }
             StateHasChanged();
         }
