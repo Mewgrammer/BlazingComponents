@@ -6,7 +6,7 @@
 @page "/gallery"
 <div class="container-fluid mt-5">
     <h4>Gallery</h4>
-    <Gallery ref="_gallery" Items="GalleryItems" />
+    <BlazorGallery ref="_gallery" Items="GalleryItems" />
     <div class="bg-dark text-white">
         @if (CurrentItem != null)
         {
@@ -32,7 +32,7 @@
         new GalleryItem<string> { Data = "Hello I am item 2", ImageSource = "http://wowslider.com/sliders/demo-93/data1/images/sunset.jpg", Subtitle = "Subtile of Item 2", Title = "Item 2"},
         new GalleryItem<string> { Data = "Hello I am item 3", ImageSource = "http://wowslider.com/sliders/demo-93/data1/images/sunset.jpg", Subtitle = "Subtile of Item 3", Title = "Item 3"}
     };
-    private Gallery<string> _gallery;
+    private BlazorGallery<string> _gallery;
 
     protected override void OnInit()
     {

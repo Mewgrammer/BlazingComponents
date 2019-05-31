@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorEssentials.ComponentLib.Areas.Components
 {
-    public class GalleryComponentBase<T> : ComponentBase
+    public class BlazorCalleryBase<T> : ComponentBase
     {
         [Parameter]
         public List<GalleryItem<T>> Items { get; private set; } = new List<GalleryItem<T>>();
+
+        [Parameter]
+        public EventCallback<GalleryItem<T>> OnSelect { get; set; }
 
         public GalleryItem<T> CurrentItem => CurrentIndex < Items.Count ? Items[CurrentIndex] : Items[0];
 
@@ -45,6 +48,7 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
         public void SelectedItemHasChanged()
         {
             OnItemSelected?.Invoke(CurrentItem);
+            OnSelect.InvokeAsync(CurrentItem);
         }
 
 

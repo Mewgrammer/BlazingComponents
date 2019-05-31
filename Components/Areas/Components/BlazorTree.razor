@@ -6,7 +6,7 @@
 
 
 @typeparam T
-@inherits BlazorEssentials.ComponentLib.Areas.Components.UITreeBase<T>
+@inherits BlazorEssentials.ComponentLib.Areas.Components.BlazorTreeBase<T>
 @if (Nodes != null && Nodes.Any())
 {
     <ul class="list-group-flush">
@@ -28,11 +28,11 @@
             }
             @if (node.IsExpanded)
             {
-                <UITree Nodes="@node.Children"
-                        SelectChangeDelegate=@SelectChangeDelegate
-                        CollapseAsyncDelegate=@CollapseAsyncDelegate
-                        ExpandAsyncDelegate=@ExpandAsyncDelegate>
-                </UITree>
+                <BlazorTree Nodes="@node.Children"
+                        OnSelect="@OnSelect"
+                        OnCollapse="@OnCollapse"
+                        OnExpand="@OnExpand">
+                </BlazorTree>
             }
         </li>
         }

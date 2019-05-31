@@ -18,16 +18,7 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
         protected IEnumerable<string> Properties { get; set; } = new List<string>();
 
         [Parameter]
-        protected RenderFragment TableHeader { get; set; }
-
-        [Parameter]
-        protected RenderFragment<T> RowTemplate { get; set; }
-
-        [Parameter]
         protected RenderFragment<T> ExpandedRowTemplate { get; set; }
-
-        [Parameter]
-        protected RenderFragment TableFooter { get; set; }
 
         [Parameter]
         protected IReadOnlyList<T> Items { get; set; }
@@ -50,6 +41,13 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
         [Parameter]
         public IList<T> ExpandedItems { get; private set; } = new List<T>();
 
+        [Parameter]
+        public EventCallback<T> OnSelect { get; set; }
+
+        [Parameter]
+        public EventCallback<T> OnExpand { get; set; }
+
+
         protected IList<PropertyInfo> PropertyInfos = new List<PropertyInfo>();
 
         public event Action<T> OnItemSelected;
@@ -62,18 +60,13 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
             {
                 Properties = typeProps.Select(p => p.Name);
             }
-            else
+            foreach (var prop in Properties)
             {
-
-                // Only Take matching Properties from Parameter
-                foreach (var prop in Properties)
-                {
-                    var propertyInfo = typeProps.FirstOrDefault(tp => tp.Name == prop);
-                    if (propertyInfo != null)
-                        PropertyInfos.Add(propertyInfo);
-                }
-                Properties = PropertyInfos.Select(p => p.Name).ToList();
+                var propertyInfo = typeProps.FirstOrDefault(tp => tp.Name == prop);
+                if (propertyInfo != null)
+                    PropertyInfos.Add(propertyInfo);
             }
+            Properties = PropertyInfos.Select(p => p.Name).ToList();
         }
 
         public void SelectItem(T item)
@@ -90,6 +83,8 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
                 SelectedItems.Add(item);
             }
             OnItemSelected?.Invoke(item);
+            OnSelect.InvokeAsync(item);
+           
         }
 
         public void ExpandItem(T item)
@@ -106,6 +101,7 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
                 ExpandedItems.Add(item);
             }
             OnItemExpanded?.Invoke(item);
+            OnExpand.InvokeAsync(item);
         }
 
         public bool IsExpanded(T item)

@@ -8,52 +8,57 @@
 
 <h1>Sample Tree</h1>
 
-<UITree Nodes="@_nodes" ExpandAsyncDelegate="@OnExpand" CollapseAsyncDelegate="@OnCollapse" LazyLoadNodesAsyncDelegate="@LoadNodes">
-</UITree>
+<BlazorTree ref="_treeRef" Nodes="@_nodes" OnExpand="@((BlazorTreeNode<string> node) => OnExpand(node))" OnCollapse="@((BlazorTreeNode<string> node) => OnCollapse(node))"  OnSelect="@((BlazorTreeNode<string> node) => OnSelect(node))" LazyLoadNodesAsyncDelegate="@LoadNodes">
+</BlazorTree>
 
 @functions {
 
-    public List<UiTreeNode<string>> _nodes = new List<UiTreeNode<string>>(){
-        new UiTreeNode<string>()
+    protected BlazorTreeBase<string> _treeRef;
+
+    public List<BlazorTreeNode<string>> _nodes = new List<BlazorTreeNode<string>>(){
+        new BlazorTreeNode<string>()
         {
-            Text = "Node 1", Children = new List<UiTreeNode<string>>()
+            Text = "Node 1", Children = new List<BlazorTreeNode<string>>()
         {
-                new UiTreeNode<string>() { Text = "ChildNode 1"},
-                new UiTreeNode<string>() { Text = "ChildNode 2"},
-                new UiTreeNode<string>() { Text = "ChildNode 3"},
-                new UiTreeNode<string>() {
-                    Text = "ChildNode 4", Children = new List<UiTreeNode<string>>()
+                new BlazorTreeNode<string>() { Text = "ChildNode 1"},
+                new BlazorTreeNode<string>() { Text = "ChildNode 2"},
+                new BlazorTreeNode<string>() { Text = "ChildNode 3"},
+                new BlazorTreeNode<string>() {
+                    Text = "ChildNode 4", Children = new List<BlazorTreeNode<string>>()
                 {
-                        new UiTreeNode<string>() { Text = "Nested ChildNode 1"},
-                        new UiTreeNode<string>() { Text = "Nested ChildNode 2"},
-                        new UiTreeNode<string>() { Text = "Nested ChildNode 3"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 1"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 2"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 3"},
                     }
                 },
             }
         }
     };
 
-    private UiTreeNode<string> _selectedNode { get; set; } = new UiTreeNode<string>();
+    private BlazorTreeNode<string> _selectedNode { get; set; } = new BlazorTreeNode<string>();
     private string _logText;
 
-    private async Task<bool> OnExpand(int Id)
+    private void OnExpand(BlazorTreeNode<string> node)
     {
-        System.Console.WriteLine("Expanded " + Id);
-        return await Task.FromResult(true);
+        Console.WriteLine("Expanded " + node.Id);
     }
 
-    private async Task<bool> OnCollapse(int Id)
+    private void OnCollapse(BlazorTreeNode<string> node)
     {
-        System.Console.WriteLine("Un Expanded " + Id);
-        return await Task.FromResult(true);
+        Console.WriteLine("Collapsed " + node.Id);
     }
 
-    private void OnSelectionChanged<T>(UIMouseEventArgs e, UiTreeNode<T> node)
+    private void OnSelect(BlazorTreeNode<string> node)
     {
-        if (node is UiTreeNode<string>)
+        _selectedNode = node;
+    }
+
+    private void OnSelectionChanged<T>(UIMouseEventArgs e, BlazorTreeNode<T> node)
+    {
+        if (node is BlazorTreeNode<string>)
         {
             _selectedNode.IsSelected = false;
-            _selectedNode = node as UiTreeNode<string>;
+            _selectedNode = node as BlazorTreeNode<string>;
         }
         StateHasChanged();
     }
@@ -63,19 +68,19 @@
 
     }
 
-    private async Task<List<UiTreeNode<string>>> LoadNodes(int? ParentId = null)
+    private async Task<List<BlazorTreeNode<string>>> LoadNodes(int? ParentId = null)
     {
-        return new List<UiTreeNode<string>>(){
-            new UiTreeNode<string>() { Text = "Node 1", Children = new List<UiTreeNode<string>>()
+        return new List<BlazorTreeNode<string>>(){
+            new BlazorTreeNode<string>() { Text = "Node 1", Children = new List<BlazorTreeNode<string>>()
 {
-                    new UiTreeNode<string>() { Text = "ChildNode 1"},
-                    new UiTreeNode<string>() { Text = "ChildNode 2"},
-                    new UiTreeNode<string>() { Text = "ChildNode 3"},
-                    new UiTreeNode<string>() { Text = "ChildNode 4", Children = new List<UiTreeNode<string>>()
+                    new BlazorTreeNode<string>() { Text = "ChildNode 1"},
+                    new BlazorTreeNode<string>() { Text = "ChildNode 2"},
+                    new BlazorTreeNode<string>() { Text = "ChildNode 3"},
+                    new BlazorTreeNode<string>() { Text = "ChildNode 4", Children = new List<BlazorTreeNode<string>>()
 {
-                        new UiTreeNode<string>() { Text = "Nested ChildNode 1"},
-                        new UiTreeNode<string>() { Text = "Nested ChildNode 2"},
-                        new UiTreeNode<string>() { Text = "Nested ChildNode 3"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 1"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 2"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 3"},
                     }
                 },
                 }

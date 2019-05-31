@@ -5,25 +5,28 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorEssentials.ComponentLib.Areas.Components
 {
-    public class UIListBase<T> : ComponentBase
+    public class BlazorTableBase<T> : ComponentBase
     {
         [Parameter]
-        protected string CssClass { get; set; } = "list-group";
+        protected string TableClass { get; set; } = "table table-striped";
 
         [Parameter]
-        protected string ItemCssClass { get; set; } = "list-group-item";
+        protected string SelectedClass { get; set; } = "bg-primary text-white";
 
         [Parameter]
-        protected string SelectedCssClass { get; set; } = "list-group-item active";
+        protected RenderFragment TableHeader { get; set; }
 
         [Parameter]
-        protected RenderFragment<T> ItemTemplate { get; set; }
+        protected RenderFragment<T> RowTemplate { get; set; }
 
         [Parameter]
-        protected RenderFragment<T> ExpandedItemTemplate { get; set; }
+        protected RenderFragment<T> ExpandedRowTemplate { get; set; }
 
         [Parameter]
-        public IReadOnlyList<T> Items { get; set; }
+        protected RenderFragment TableFooter { get; set; }
+
+        [Parameter]
+        protected IReadOnlyList<T> Items { get; set; }
 
         [Parameter]
         protected bool Selectable { get; set; } = true;
@@ -38,25 +41,22 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
         protected bool MultiExpand { get; set; } = false;
 
         [Parameter]
+        public EventCallback<T> OnSelect { get; set; }
+
+
+        [Parameter]
+        public EventCallback<T> OnExpand { get; set; }
+
+
+        [Parameter]
         public IList<T> SelectedItems { get; private set; } = new List<T>();
 
         [Parameter]
         public IList<T> ExpandedItems { get; private set; } = new List<T>();
 
-        public Action<T> ItemSelected { get; set; }
-        public Action<T> ItemExpanded { get; set; }
 
-        public void OnItemClick(T item)
-        {
-            if(Selectable)
-            {
-                SelectItem(item);
-            }
-            else if (Expandable)
-            {
-                ExpandItem(item);
-            }
-        }
+        public event Action<T> OnItemSelected;
+        public event Action<T> OnItemExpanded;
 
         public void SelectItem(T item)
         {
@@ -71,7 +71,8 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
                     SelectedItems = new List<T>();
                 SelectedItems.Add(item);
             }
-            ItemSelected?.Invoke(item);
+            OnItemSelected?.Invoke(item);
+            OnSelect.InvokeAsync(item);
         }
 
         public void ExpandItem(T item)
@@ -87,7 +88,8 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
                     ExpandedItems = new List<T>();
                 ExpandedItems.Add(item);
             }
-            ItemExpanded?.Invoke(item);
+            OnItemExpanded?.Invoke(item);
+            OnExpand.InvokeAsync(item);
         }
 
         public bool IsExpanded(T item)
@@ -100,9 +102,9 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
             return SelectedItems.Contains(item);
         }
 
-        public string GetItemClass(T item)
+        public string GetRowClass(T item)
         {
-            return IsSelected(item) ? SelectedCssClass : ItemCssClass;
+            return IsSelected(item) ? SelectedClass : "";
         }
 
         public void ExpandAll()

@@ -7,22 +7,22 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorEssentials.ComponentLib.Areas.Components
 {
-    public class UITreeBase<T> : ComponentBase
+    public class BlazorTreeBase<T> : ComponentBase
     {
         [Parameter]
-        public List<UiTreeNode<T>> Nodes { get; set; } = new List<UiTreeNode<T>>();
+        public List<BlazorTreeNode<T>> Nodes { get; set; } = new List<BlazorTreeNode<T>>();
 
         [Parameter]
-        public Action<UIMouseEventArgs, UiTreeNode<T>> SelectChangeDelegate { get; set; } = null;
+        public Func<int?, Task<List<BlazorTreeNode<T>>>> LazyLoadNodesAsyncDelegate { get; set; } = null;
 
         [Parameter]
-        public Func<int?, Task<List<UiTreeNode<T>>>> LazyLoadNodesAsyncDelegate { get; set; } = null;
+        public EventCallback<BlazorTreeNode<T>> OnCollapse { get; set; }
 
         [Parameter]
-        public Func<int, Task<bool>> ExpandAsyncDelegate { get; set; } = null;
+        public EventCallback<BlazorTreeNode<T>> OnExpand { get; set; }
 
         [Parameter]
-        public Func<int, Task<bool>> CollapseAsyncDelegate { get; set; } = null;
+        public EventCallback<BlazorTreeNode<T>> OnSelect { get; set; }
 
 
         protected override async Task OnInitAsync()
@@ -33,42 +33,41 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
             }
         }
 
-        protected void OnNodeClick(UIMouseEventArgs e, UiTreeNode<T> node)
+        protected void OnNodeClick(UIMouseEventArgs e, BlazorTreeNode<T> node)
         {
             if (!node.Children.Any()) // Only Nodes without children can be selected
             {
                 node.IsSelected = !node.IsSelected;
-                if(SelectChangeDelegate != null)
-                    SelectChangeDelegate(e, node);
+                OnSelect.InvokeAsync(node);
             }
         }
 
-        protected async void OnExpandClick(UIMouseEventArgs e, UiTreeNode<T> node)
+        protected async void OnExpandClick(UIMouseEventArgs e, BlazorTreeNode<T> node)
         {
             node.IsExpanded = !node.IsExpanded;
-            if (node.IsExpanded && ExpandAsyncDelegate != null)
+            if (node.IsExpanded)
             {
-                var expandResult = await ExpandAsyncDelegate(node.Id);
+                await OnExpand.InvokeAsync(node);
             }
-            else if(CollapseAsyncDelegate != null)
+            else
             {
-                var collapseResult = await CollapseAsyncDelegate(node.Id);
+                await OnCollapse.InvokeAsync(node);
             }
         }
 
-        protected string GetIconClass(UiTreeNode<T> node)
+        protected string GetIconClass(BlazorTreeNode<T> node)
         {
             return node.IsExpanded ? "fas fa-caret-down" : "fas fa-caret-right";
         }
 
-        protected string GetNodeClass(UiTreeNode<T> node)
+        protected string GetNodeClass(BlazorTreeNode<T> node)
         {
             var defaultClass = "list-group-item";
             return node.IsSelected ? defaultClass + " active" : defaultClass + " text-black";
         }
 
 
-        protected string GetNodesAsMarkupRecurse(List<UiTreeNode<T>> nodes)
+        protected string GetNodesAsMarkupRecurse(List<BlazorTreeNode<T>> nodes)
         {
             var result = "";
             foreach (var node in nodes)

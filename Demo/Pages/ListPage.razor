@@ -5,7 +5,7 @@
 
 <h1>Lists</h1>
 
-<UIList ref="_listRef" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
+<BlazorList ref="_listRef" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
     <ItemTemplate Context="item">
         <span>@item.FirstName  @item.LastName , @item.BirthDate</span>
         <button class="btn btn-outline-dark" onclick="@( () => ExpandItem(item))">Expand</button>
@@ -17,7 +17,7 @@
             </li>
         </ul>
     </ExpandedItemTemplate>
-</UIList>
+</BlazorList>
 
 <form onsubmit="@OnAddItem">
     <label>
@@ -66,7 +66,7 @@
 
 @functions{
 
-    private UIListBase<Person> _listRef;
+    private BlazorListBase<Person> _listRef;
 
     public IList<Person> ListItems { get; private set; } = new List<Person>
     {

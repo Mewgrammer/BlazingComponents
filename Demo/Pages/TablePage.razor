@@ -19,22 +19,22 @@
     @switch (SelectedDataSource)
     {
         case "Persons":
-    <AutoTable Items="Persons" Selectable="true" MultiSelect="false">
-        <ExpandedRowTemplate Context="person">
-            <td colspan="999">
-                @($"{person.FirstName} {person.LastName} born on {person.BirthDate}")
-            </td>
-        </ExpandedRowTemplate>
-    </AutoTable>
+            <AutoTable Items="Persons" Selectable="true" MultiSelect="false">
+                <ExpandedRowTemplate Context="person">
+                    <td colspan="999">
+                        @($"{person.FirstName} {person.LastName} born on {person.BirthDate}")
+                    </td>
+                </ExpandedRowTemplate>
+            </AutoTable>
             break;
         case "Cars":
-    <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
-        <ExpandedRowTemplate Context="car">
-            <td colspan="999">
-                @($"A {car.Manufacturer} {car.Model} with {car.Horsepower} PS and a fuel consumption of {car.FuelConsumption} l/100km priced at {car.Price}€")
-            </td>
-        </ExpandedRowTemplate>
-    </AutoTable>
+            <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
+                <ExpandedRowTemplate Context="car">
+                    <td colspan="999">
+                        @($"A {car.Manufacturer} {car.Model} with {car.Horsepower} PS and a fuel consumption of {car.FuelConsumption} l/100km priced at {car.Price}€")
+                    </td>
+                </ExpandedRowTemplate>
+            </AutoTable>
             break;
     }
 </div>
@@ -42,7 +42,7 @@
     <h3>
         expandable & selectable table with generic Data source. Row, Header and Footer Templates using RenderFragments
     </h3>
-    <TableComponent ref="_tableComponent" Items="Persons" Expandable="_tableExpandable" Selectable="_tableSelectable" MultiSelect="_tableMultiSelect" MultiExpand="_tableMultiExpand">
+    <BlazorTable ref="_tableComponent" Items="Persons" Expandable="_tableExpandable" Selectable="_tableSelectable" MultiSelect="_tableMultiSelect" MultiExpand="_tableMultiExpand">
         <TableHeader>
             <th></th>
             <th>ID</th>
@@ -75,7 +75,7 @@
                 </table>
             </td>
         </ExpandedRowTemplate>
-    </TableComponent>
+    </BlazorTable>
 
     <div class="row">
         <div class="custom-control custom-switch ml-5">
@@ -163,7 +163,7 @@
     public string SelectedDataSource = "Persons";
 
 
-    private TableComponentBase<Person> _tableComponent;
+    private BlazorTableBase<Person> _tableComponent;
     private Person ButtonClickedPerson { get; set; }
     private bool _tableRendered;
 

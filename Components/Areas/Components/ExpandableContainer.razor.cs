@@ -13,10 +13,8 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
         [Parameter]
         public string AnimateCollapseClass { get; set; } = "animated slideInRight"; //https://daneden.github.io/animate.css/
 
-
         [Parameter]
         public bool Expanded { get; set; } = true;
-
 
         [Parameter]
         public RenderFragment CollapsedContent { get; set; }
