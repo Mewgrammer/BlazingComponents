@@ -41,22 +41,27 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
         protected bool MultiExpand { get; set; } = false;
 
         [Parameter]
-        public EventCallback<T> OnSelect { get; set; }
-
-
-        [Parameter]
-        public EventCallback<T> OnExpand { get; set; }
-
-
-        [Parameter]
         public IList<T> SelectedItems { get; private set; } = new List<T>();
 
         [Parameter]
         public IList<T> ExpandedItems { get; private set; } = new List<T>();
 
+        [Parameter]
+        public EventCallback<T> OnSelect { get; set; }
+
+        [Parameter]
+        public EventCallback<T> OnExpand { get; set; }
+
+        [Parameter]
+        public EventCallback<IEnumerable<T>> OnSelectMany { get; set; }
+
+        [Parameter]
+        public EventCallback<IEnumerable<T>> OnExpandMany { get; set; }
 
         public event Action<T> OnItemSelected;
         public event Action<T> OnItemExpanded;
+        public event Action<IEnumerable<T>> OnItemsSelected;
+        public event Action<IEnumerable<T>> OnItemsExpanded;
 
         public void SelectItem(T item)
         {
@@ -72,7 +77,23 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
                 SelectedItems.Add(item);
             }
             OnItemSelected?.Invoke(item);
+            OnItemsSelected?.Invoke(new List<T> { item });
             OnSelect.InvokeAsync(item);
+        }
+
+        public void SelectItems(IEnumerable<T> items)
+        {
+            if (!Selectable) return;
+            if (!MultiSelect)
+            {
+                SelectItem(items.FirstOrDefault());
+            }
+            else
+            {
+                SelectedItems = items.ToList();
+                OnItemsSelected?.Invoke(items);
+                OnSelectMany.InvokeAsync(items);
+            }
         }
 
         public void ExpandItem(T item)
@@ -89,7 +110,23 @@ namespace BlazorEssentials.ComponentLib.Areas.Components
                 ExpandedItems.Add(item);
             }
             OnItemExpanded?.Invoke(item);
+            OnItemsExpanded?.Invoke(new List<T> { item });
             OnExpand.InvokeAsync(item);
+        }
+
+        public void ExpandItems(IEnumerable<T> items)
+        {
+            if (!Expandable) return;
+            if (!MultiExpand)
+            {
+                ExpandItem(items.FirstOrDefault());
+            }
+            else
+            {
+                ExpandedItems = items.ToList();
+                OnItemsExpanded?.Invoke(items);
+                OnExpandMany.InvokeAsync(items);
+            }
         }
 
         public bool IsExpanded(T item)
