@@ -1,0 +1,41 @@
+﻿@using System.Collections.Generic
+@using BlazorEssentials.ComponentLib.Models
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+
+@switch (ProgressType)
+{
+    case EProgressType.Spinner:
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        break;
+
+    case EProgressType.Progress:
+        <div class="progress" style="height: 1px;">
+            <div class="progress-bar" role="progressbar" style="@GetProgressStyle()" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        break;
+
+    case EProgressType.Animated:
+        <div class="progress" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="@GetProgressStyle()" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        break;
+}
+
+
+
+
+@functions{
+    [Parameter]
+    public EProgressType ProgressType { get; set; }
+
+    [Parameter]
+    private int ProgressValue { get; set; } = 0;
+    public string GetProgressStyle()
+    {
+
+        return $"width: {ProgressValue}%";
+    }
+}

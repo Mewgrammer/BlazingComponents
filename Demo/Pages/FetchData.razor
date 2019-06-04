@@ -1,6 +1,7 @@
 @page "/fetchdata"
 @using BlazorEssentials.Demo.Models
 @using BlazorEssentials.Demo.Services
+@using BlazorEssentials.ComponentLib.Models
 @inject WeatherForecastService ForecastService
 
 <h1>Weather forecast</h1>
@@ -9,7 +10,7 @@
 
 @if (forecasts == null)
 {
-    <p><em>Loading...</em></p>
+    <Progress ProgressType="@(EProgressType.Animated)" ProgressValue="@Progress"></Progress>
 }
 else
 {
@@ -40,6 +41,8 @@ else
 @functions {
     WeatherForecast[] forecasts;
 
+    private int Progress { get; set; } = 0;
+
     protected override async Task OnInitAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
@@ -48,8 +51,15 @@ else
     protected async void Refresh()
     {
         forecasts = null;
-        await Task.Delay(1500);
+        for(int i =0; i<=100; i++)
+        {
+            Progress++;
+            await Task.Delay(300);
+            StateHasChanged();
+
+        }
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
         StateHasChanged();
+        Progress = 0;
     }
 }
