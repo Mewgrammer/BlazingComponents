@@ -29,6 +29,7 @@ Included Components
 - Nav Menu - Vertical Navigation
 - UIList - List Component with Data Source
 - UITree - Tree Component with various Eventhandlers and Data Source
+- Progressbar - Spinner and various Progressbars
   
 
 ## Getting Started
