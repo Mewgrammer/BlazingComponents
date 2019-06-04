@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/core-nightly/aspnet:3.0.0-preview6-buster-slim-arm32v7 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
+FROM mcr.microsoft.com/dotnet/core-nightly/sdk:3.0.100-preview6-buster-arm32v7 AS build
 WORKDIR /src
 COPY ["Demo/BlazorEssentials.Demo.csproj", "Demo/"]
 COPY ["Components/BlazorEssentials.ComponentLib.csproj", "Components/"]
