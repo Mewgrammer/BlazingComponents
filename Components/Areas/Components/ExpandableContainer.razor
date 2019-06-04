@@ -1,0 +1,15 @@
+﻿
+@inherits BlazorEssentials.ComponentLib.Areas.Components.ExpandableContainerBase
+
+@if (Expanded)
+{
+    <div class="@AnimateExpandClass">
+        @ExpandedContent
+    </div>
+}
+else
+{
+    <div class="@AnimateCollapseClass">
+        @CollapsedContent
+    </div>
+}

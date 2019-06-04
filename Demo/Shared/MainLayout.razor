@@ -1,0 +1,45 @@
+﻿@using BlazorEssentials.ComponentLib.Models
+@inherits LayoutComponentBase
+
+
+<div class="container-fluid">
+    <div class="row bg-dark text-white">
+        <!-- Header -->
+        <NavBar NavLinks="NavLinks" />
+    </div>
+    <div class="row h-100">
+        <div class="col-xl-1 col-lg-4 col-md-4 col-sm-4 col-xs-6 text-white bg-dark h-100">
+            <!-- Side-Nav -->
+            <NavMenu NavLinks="NavLinks" />
+        </div>
+        <div class="container-fluid w-auto h-100">
+            <!-- Router Outlet -->
+            @Body
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <!-- Footer -->
+        <h5>Cloud in a Box SS2019</h5>
+    </div>
+</div>
+
+
+@functions{
+    private List<NavLinkItem> NavLinks { get; set; } = new List<NavLinkItem>
+    {
+        new NavLinkItem { DisplayName = "Home", Href = "", Icon = "fas fa-home" },
+        new NavLinkItem { DisplayName = "Counter", Href = "counter", Icon = "fas fa-sort-numeric-up" },
+        new NavLinkItem { DisplayName = "Weather forecast", Href = "fetchdata", Icon = "fas fa-cloud-sun" },
+        new NavLinkItem { DisplayName = "Table", Href = "table", Icon = "fas fa-table" },
+        new NavLinkItem { DisplayName = "List", Href = "list", Icon = "fas fa-list" },
+        new NavLinkItem { DisplayName = "Grid", Href = "gridView", Icon = "fas fa-list" },
+        new NavLinkItem { DisplayName = "Settings", Href = "settings", Icon = "fas fa-cog" },
+        new NavLinkItem { DisplayName = "Gallery", Href = "gallery", Icon = "fas fa-image" },
+        new NavLinkItem { DisplayName = "Tree", Href = "tree", Icon = "fas fa-tree" },
+        new NavLinkItem { DisplayName = "Toast", Href = "toast", Icon = "fa fa-bell" },
+        new NavLinkItem { DisplayName = "Login", Href = "login", Icon = "fas fa-user" },
+        new NavLinkItem { DisplayName = "Register", Href = "register", Icon = "fas fa-user" },
+    };
+}
+
+

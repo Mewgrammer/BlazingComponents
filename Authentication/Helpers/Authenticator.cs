@@ -3,10 +3,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Cloud_In_A_Box.Authentication.Models;
+using BlazorEssentials.Authentication.Models;
 using Newtonsoft.Json;
 
-namespace Cloud_In_A_Box.Authentication.Helpers
+namespace BlazorEssentials.Authentication.Helpers
 {
     public static class Authenticator
     {

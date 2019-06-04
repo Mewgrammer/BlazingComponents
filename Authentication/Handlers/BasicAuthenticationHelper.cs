@@ -4,13 +4,13 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Cloud_In_A_Box.Authentication.Interfaces;
-using Cloud_In_A_Box.Authentication.Models;
+using BlazorEssentials.Authentication.Interfaces;
+using BlazorEssentials.Authentication.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Cloud_In_A_Box.Authentication.Handlers
+namespace BlazorEssentials.Authentication.Handlers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {

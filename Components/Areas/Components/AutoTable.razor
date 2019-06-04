@@ -3,34 +3,34 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Components
 @typeparam T
-@inherits AutoTableComponentBase<T>
+@inherits BlazorEssentials.ComponentLib.Areas.Components.AutoTableComponentBase<T>
 
 <div>
     <table class="table">
         <thead>
-            <tr>
-                @foreach (var prop in typeof(T).GetProperties())
-                {
-                    <th>@prop.Name</th>
-                }
-            </tr>
+        <tr>
+            @foreach (var prop in Properties)
+            {
+                <th>@prop</th>
+            }
+        </tr>
         </thead>
         <tbody>
-            @foreach (var item in Items)
-            {
-                <tr class="@GetRowClass(item)" ondblclick="@( e => ExpandItem(item) )" onclick="@(e => SelectItem(item))">
-                    @foreach (var prop in item.GetType().GetProperties())
-                    {
-                        <td>@prop.GetValue(item, null)</td>
-                    }
-                </tr>
-                if (IsExpanded(item) && ExpandedRowTemplate != null)
+        @foreach (var item in Items)
+        {
+            <tr class="@GetRowClass(item)" ondblclick="@( e => ExpandItem(item) )" onclick="@(e => SelectItem(item))">
+                @foreach (var prop in PropertyInfos)
                 {
-                    <tr>
-                        @ExpandedRowTemplate(item)
-                    </tr>
+                    <td>@prop.GetValue(item, null)</td>
                 }
+            </tr>
+            if (IsExpanded(item) && ExpandedRowTemplate != null)
+            {
+                <tr>
+                    @ExpandedRowTemplate(item)
+                </tr>
             }
+        }
         </tbody>
     </table>
 </div>

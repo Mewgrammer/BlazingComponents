@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Cloud_In_A_Box.Authentication.Helpers;
-using Cloud_In_A_Box.Authentication.Models;
+using BlazorEssentials.Authentication.Helpers;
+using BlazorEssentials.Authentication.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Cloud_In_A_Box.Authentication.Areas.Components
+namespace BlazorEssentials.Authentication.Areas.Components
 {
 
     public class UserStateProviderBase : ComponentBase
@@ -20,7 +20,7 @@ namespace Cloud_In_A_Box.Authentication.Areas.Components
         public HttpClient HttpClient { get; set; }
 
         [Inject]
-        public IJSRuntime JSRuntime { get; set; }
+        public IJSRuntime JsRuntime { get; set; }
 
         public UserState CurrentUser { get; private set; }
 

@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sotsera.Blazor.Toaster.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Cloud_In_A_Box.Components
+namespace BlazorEssentials.ComponentLib
 {
     public static class ComponentLibExtensions
     {

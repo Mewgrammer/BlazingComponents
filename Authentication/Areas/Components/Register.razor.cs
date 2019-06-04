@@ -1,10 +1,10 @@
-﻿using Cloud_In_A_Box.Authentication.Models;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using BlazorEssentials.Authentication.Models;
 
-namespace Cloud_In_A_Box.Authentication.Areas.Components
+namespace BlazorEssentials.Authentication.Areas.Components
 {
     public class RegisterBase : ComponentBase
     {
@@ -39,7 +39,6 @@ namespace Cloud_In_A_Box.Authentication.Areas.Components
             else
             {
                 OnRegistrationResult?.Invoke(true, UserState.CurrentUser);
-                UriHelper.NavigateTo("/login");
             }
             StateHasChanged();
         }

@@ -2,7 +2,7 @@ version: '3'
 
 services:
     razor-components:
-        image: mewgrammer/cloud-in-a-box:latest
+        image: mewgrammer/blazor-essentials:latest
         restart: always
         ports:
             - 443:443

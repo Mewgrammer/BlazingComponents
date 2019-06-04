@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Cloud_In_A_Box.Components.Models
+namespace BlazorEssentials.ComponentLib.Models
 {
-    public class UiTreeNode<T>
+    public class BlazorTreeNode<T>
     {
         public int Id { get; set; }
         public T Data { get; set; }
-        public UiTreeNode<T> Parent { get; set; }
-        public List<UiTreeNode<T>> Children { get; set; } = new List<UiTreeNode<T>>();
+        public BlazorTreeNode<T> Parent { get; set; }
+        public List<BlazorTreeNode<T>> Children { get; set; } = new List<BlazorTreeNode<T>>();
         public int Deep { get; set; }
         public string Text { get; set; }
         public bool IsExpanded { get; set; } = false;

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Components;
 
-namespace Cloud_In_A_Box.Components.Areas.Components
+namespace BlazorEssentials.ComponentLib.Areas.Components
 {
     public class AutoTableComponentBase<T> : ComponentBase
     {
@@ -14,16 +15,10 @@ namespace Cloud_In_A_Box.Components.Areas.Components
         protected string SelectedClass { get; set; } = "bg-primary text-white";
 
         [Parameter]
-        protected RenderFragment TableHeader { get; set; }
-
-        [Parameter]
-        protected RenderFragment<T> RowTemplate { get; set; }
+        protected IEnumerable<string> Properties { get; set; } = new List<string>();
 
         [Parameter]
         protected RenderFragment<T> ExpandedRowTemplate { get; set; }
-
-        [Parameter]
-        protected RenderFragment TableFooter { get; set; }
 
         [Parameter]
         protected IReadOnlyList<T> Items { get; set; }
@@ -46,8 +41,43 @@ namespace Cloud_In_A_Box.Components.Areas.Components
         [Parameter]
         public IList<T> ExpandedItems { get; private set; } = new List<T>();
 
-        public Action<T> ItemSelected { get; set; }
-        public Action<T> ItemExpanded { get; set; }
+        [Parameter]
+        public EventCallback<T> OnSelect { get; set; }
+
+        [Parameter]
+        public EventCallback<T> OnExpand { get; set; }
+
+        [Parameter]
+        public EventCallback<IEnumerable<T>> OnSelectMany { get; set; }
+
+        [Parameter]
+        public EventCallback<IEnumerable<T>> OnExpandMany { get; set; }
+
+
+
+        protected IList<PropertyInfo> PropertyInfos = new List<PropertyInfo>();
+
+        public event Action<T> OnItemSelected;
+        public event Action<T> OnItemExpanded;
+        public event Action<IEnumerable<T>> OnItemsSelected;
+        public event Action<IEnumerable<T>> OnItemsExpanded;
+
+
+        protected override void OnInit()
+        {
+            var typeProps = typeof(T).GetProperties();
+            if (!Properties.Any()) // Take All Properties if Parameter is not Set
+            {
+                Properties = typeProps.Select(p => p.Name);
+            }
+            foreach (var prop in Properties)
+            {
+                var propertyInfo = typeProps.FirstOrDefault(tp => tp.Name == prop);
+                if (propertyInfo != null)
+                    PropertyInfos.Add(propertyInfo);
+            }
+            Properties = PropertyInfos.Select(p => p.Name).ToList();
+        }
 
         public void SelectItem(T item)
         {
@@ -62,7 +92,25 @@ namespace Cloud_In_A_Box.Components.Areas.Components
                     SelectedItems = new List<T>();
                 SelectedItems.Add(item);
             }
-            ItemSelected?.Invoke(item);
+            OnItemSelected?.Invoke(item);
+            OnItemsSelected?.Invoke(new List<T> { item});
+            OnSelect.InvokeAsync(item);
+        }
+
+        public void SelectItems(IEnumerable<T> items)
+        {
+            if (!Selectable) return;
+            if(!MultiSelect)
+            {
+                SelectItem(items.FirstOrDefault());
+            }
+            else
+            {
+                SelectedItems = items.ToList();
+                OnItemsSelected?.Invoke(items);
+                OnSelectMany.InvokeAsync(items);
+            }
+
         }
 
         public void ExpandItem(T item)
@@ -78,7 +126,24 @@ namespace Cloud_In_A_Box.Components.Areas.Components
                     ExpandedItems = new List<T>();
                 ExpandedItems.Add(item);
             }
-            ItemExpanded?.Invoke(item);
+            OnItemExpanded?.Invoke(item);
+            OnItemsExpanded?.Invoke(new List<T> { item });
+            OnExpand.InvokeAsync(item);
+        }
+
+        public void ExpandItems(IEnumerable<T> items)
+        {
+            if (!Expandable) return;
+            if (!MultiExpand)
+            {
+                ExpandItem(items.FirstOrDefault());
+            }
+            else
+            {
+                ExpandedItems = items.ToList();
+                OnItemsExpanded?.Invoke(items);
+                OnExpandMany.InvokeAsync(items);
+            }
         }
 
         public bool IsExpanded(T item)

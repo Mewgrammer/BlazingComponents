@@ -1,0 +1,91 @@
+﻿@page "/tree"
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using BlazorEssentials.ComponentLib.Models
+@using BlazorEssentials.ComponentLib.Areas.Components
+@using Microsoft.AspNetCore.Components
+
+<h1>Sample Tree</h1>
+
+<BlazorTree ref="_treeRef" Nodes="@_nodes" OnExpand="@((BlazorTreeNode<string> node) => OnExpand(node))" OnCollapse="@((BlazorTreeNode<string> node) => OnCollapse(node))"  OnSelect="@((BlazorTreeNode<string> node) => OnSelect(node))" LazyLoadNodesAsyncDelegate="@LoadNodes">
+</BlazorTree>
+
+@functions {
+
+    protected BlazorTreeBase<string> _treeRef;
+
+    public List<BlazorTreeNode<string>> _nodes = new List<BlazorTreeNode<string>>(){
+        new BlazorTreeNode<string>()
+        {
+            Text = "Node 1", Children = new List<BlazorTreeNode<string>>()
+        {
+                new BlazorTreeNode<string>() { Text = "ChildNode 1"},
+                new BlazorTreeNode<string>() { Text = "ChildNode 2"},
+                new BlazorTreeNode<string>() { Text = "ChildNode 3"},
+                new BlazorTreeNode<string>() {
+                    Text = "ChildNode 4", Children = new List<BlazorTreeNode<string>>()
+                {
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 1"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 2"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 3"},
+                    }
+                },
+            }
+        }
+    };
+
+    private BlazorTreeNode<string> _selectedNode { get; set; } = new BlazorTreeNode<string>();
+    private string _logText;
+
+    private void OnExpand(BlazorTreeNode<string> node)
+    {
+        Console.WriteLine("Expanded " + node.Id);
+    }
+
+    private void OnCollapse(BlazorTreeNode<string> node)
+    {
+        Console.WriteLine("Collapsed " + node.Id);
+    }
+
+    private void OnSelect(BlazorTreeNode<string> node)
+    {
+        _selectedNode = node;
+    }
+
+    private void OnSelectionChanged<T>(UIMouseEventArgs e, BlazorTreeNode<T> node)
+    {
+        if (node is BlazorTreeNode<string>)
+        {
+            _selectedNode.IsSelected = false;
+            _selectedNode = node as BlazorTreeNode<string>;
+        }
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitAsync()
+    {
+
+    }
+
+    private async Task<List<BlazorTreeNode<string>>> LoadNodes(int? ParentId = null)
+    {
+        return new List<BlazorTreeNode<string>>(){
+            new BlazorTreeNode<string>() { Text = "Node 1", Children = new List<BlazorTreeNode<string>>()
+{
+                    new BlazorTreeNode<string>() { Text = "ChildNode 1"},
+                    new BlazorTreeNode<string>() { Text = "ChildNode 2"},
+                    new BlazorTreeNode<string>() { Text = "ChildNode 3"},
+                    new BlazorTreeNode<string>() { Text = "ChildNode 4", Children = new List<BlazorTreeNode<string>>()
+{
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 1"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 2"},
+                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 3"},
+                    }
+                },
+                }
+            }
+        };
+    }
+
+}

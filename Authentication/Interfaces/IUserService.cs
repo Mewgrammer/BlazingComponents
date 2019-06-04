@@ -1,10 +1,10 @@
-﻿using Cloud_In_A_Box.Authentication.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorEssentials.Authentication.Models;
 
-namespace Cloud_In_A_Box.Authentication.Interfaces
+namespace BlazorEssentials.Authentication.Interfaces
 {
     public interface IUserService
     {
