@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <RootNamespace>BlazorEssentials.Authentication</RootNamespace>
+    <RootNamespace>BlazingComponents.Authentication</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/Mewgrammer/BlazorEssentials</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Mewgrammer/BlazingComponents</RepositoryUrl>
     <PackageTags>blazor, components, netcore</PackageTags>
     <Authors>Mewgrammer</Authors>
     <Company />
-    <Product>BlazorEssentials</Product>
+    <Product>BlazingComponents</Product>
     <Description>Authentication Components, Controller, Service and State Provider for Asp.NetCore Blazor.</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>

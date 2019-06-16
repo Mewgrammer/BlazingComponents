@@ -1,4 +1,4 @@
-﻿namespace BlazorEssentials.ComponentLib.Models
+﻿namespace BlazingComponents.Lib.Models
 {
     public class GalleryItem<T>
     {

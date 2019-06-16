@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Models;
 
-namespace BlazorEssentials.Authentication.Areas.Components
+namespace BlazingComponents.Authentication.Areas.Components
 {
     public class RegisterBase : ComponentBase
     {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEssentials.Demo", "Demo\BlazorEssentials.Demo.csproj", "{99E137EA-82CE-476D-BEE8-B38C8DF66756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingComponents.Demo", "Demo\BlazingComponents.Demo.csproj", "{99E137EA-82CE-476D-BEE8-B38C8DF66756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEssentials.ComponentLib", "Components\BlazorEssentials.ComponentLib.csproj", "{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingComponents.Authentication", "Authentication\BlazingComponents.Authentication.csproj", "{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEssentials.Authentication", "Authentication\BlazorEssentials.Authentication.csproj", "{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingComponents.Lib", "Components\BlazingComponents.Lib.csproj", "{BFBD1410-9412-48F1-825E-6E658CCAD70B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{99E137EA-82CE-476D-BEE8-B38C8DF66756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99E137EA-82CE-476D-BEE8-B38C8DF66756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99E137EA-82CE-476D-BEE8-B38C8DF66756}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A149EA9-AAD6-4FAC-8A97-91877B80FC79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18846AAA-8C7E-4A69-B9E6-944D3D6DAB93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFBD1410-9412-48F1-825E-6E658CCAD70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFBD1410-9412-48F1-825E-6E658CCAD70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFBD1410-9412-48F1-825E-6E658CCAD70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFBD1410-9412-48F1-825E-6E658CCAD70B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

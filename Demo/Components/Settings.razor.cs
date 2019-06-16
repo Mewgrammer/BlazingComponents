@@ -1,9 +1,9 @@
-﻿using BlazorEssentials.Demo.Models;
-using BlazorEssentials.Demo.Services;
+﻿using BlazingComponents.Demo.Models;
+using BlazingComponents.Demo.Services;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 
-namespace BlazorEssentials.Demo.Components
+namespace BlazingComponents.Demo.Components
 {
     public class SettingsBase : ComponentBase
     {

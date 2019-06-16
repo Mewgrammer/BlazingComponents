@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
-using BlazorEssentials.Authentication.Interfaces;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Interfaces;
+using BlazingComponents.Authentication.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorEssentials.Authentication.Controllers
+namespace BlazingComponents.Authentication.Controllers
 {
     [ApiController]
     public class UserController : Controller
     {
-        private static UserState LoggedOutState = new UserState { IsLoggedIn = false };
+        private UserState LoggedOutState => new UserState { IsLoggedIn = false };
 
         private IUserService _userService;
 
@@ -20,11 +20,11 @@ namespace BlazorEssentials.Authentication.Controllers
         }
 
         [HttpGet("user")]
-        public UserState GetUser()
+        public ActionResult<UserState> GetUser()
         {
-            return User.Identity.IsAuthenticated
+            return Ok(User.Identity.IsAuthenticated
                 ? new UserState { IsLoggedIn = true, DisplayName = User.Identity.Name }
-                : LoggedOutState;
+                : LoggedOutState);
         }
 
         [HttpGet("login")]

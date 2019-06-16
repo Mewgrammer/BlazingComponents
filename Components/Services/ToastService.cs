@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 
-namespace BlazorEssentials.ComponentLib.Services
+namespace BlazingComponents.Lib.Services
 {
     public enum ToastLevel
     {

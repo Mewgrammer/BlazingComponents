@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sotsera.Blazor.Toaster.Core.Models;
 
-namespace BlazorEssentials.ComponentLib
+namespace BlazingComponents.Lib
 {
     public static class ComponentLibExtensions
     {

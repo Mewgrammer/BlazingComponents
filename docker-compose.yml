@@ -2,7 +2,7 @@ version: '3'
 
 services:
     razor-components:
-        image: mewgrammer/blazor-essentials:latest
+        image: mewgrammer/blazing-components:latest
         restart: always
         ports:
             - 443:443

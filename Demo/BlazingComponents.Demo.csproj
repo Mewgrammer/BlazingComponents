@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
-    <RootNamespace>BlazorEssentials.Demo</RootNamespace>
+    <RootNamespace>BlazingComponents.Demo</RootNamespace>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <UserSecretsId>be552aa9-f478-44ad-8aca-a782571e1de6</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Authentication\BlazorEssentials.Authentication.csproj" />
-    <ProjectReference Include="..\Components\BlazorEssentials.ComponentLib.csproj" />
+    <ProjectReference Include="..\Authentication\BlazingComponents.Authentication.csproj" />
+    <ProjectReference Include="..\Components\BlazingComponents.Lib.csproj" />
   </ItemGroup>
 
 </Project>

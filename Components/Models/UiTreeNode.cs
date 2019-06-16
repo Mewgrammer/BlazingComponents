@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorEssentials.ComponentLib.Models
+namespace BlazingComponents.Lib.Models
 {
     public class BlazorTreeNode<T>
     {

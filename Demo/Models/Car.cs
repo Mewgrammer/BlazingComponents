@@ -1,4 +1,4 @@
-﻿namespace BlazorEssentials.Demo.Models
+﻿namespace BlazingComponents.Demo.Models
 {
     public class Car
     {
