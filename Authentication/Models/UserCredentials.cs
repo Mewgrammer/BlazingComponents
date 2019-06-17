@@ -1,4 +1,4 @@
-﻿namespace BlazorEssentials.Authentication.Models
+﻿namespace BlazingComponents.Authentication.Models
 {
     public class UserCredentials
     {

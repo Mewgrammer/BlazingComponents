@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Models;
 
-namespace BlazorEssentials.Authentication.Interfaces
+namespace BlazingComponents.Authentication.Interfaces
 {
     public interface IUserService
     {

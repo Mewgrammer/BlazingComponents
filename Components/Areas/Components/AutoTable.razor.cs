@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorEssentials.ComponentLib.Areas.Components
+namespace BlazingComponents.Lib.Areas.Components
 {
     public class AutoTableComponentBase<T> : ComponentBase
     {

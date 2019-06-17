@@ -1,14 +1,14 @@
 ﻿@page "/list"
-@using BlazorEssentials.ComponentLib.Areas.Components
-@using BlazorEssentials.Demo.Models
+@using BlazingComponents.Lib.Areas.Components
+@using BlazingComponents.Demo.Models
 @inject Sotsera.Blazor.Toaster.IToaster Toaster
 
 <h1>Lists</h1>
 
-<BlazorList ref="_listRef" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
+<BlazorList @ref="_listRef" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
     <ItemTemplate Context="item">
         <span>@item.FirstName  @item.LastName , @item.BirthDate</span>
-        <button class="btn btn-outline-dark" onclick="@( () => ExpandItem(item))">Expand</button>
+        <button class="btn btn-outline-dark" @onclick="@( () => ExpandItem(item))">Expand</button>
     </ItemTemplate>
     <ExpandedItemTemplate Context="item">
         <ul class="list-group bg-dark text-white">
@@ -19,7 +19,7 @@
     </ExpandedItemTemplate>
 </BlazorList>
 
-<form onsubmit="@OnAddItem">
+<form @onsubmit="@OnAddItem">
     <label>
         First Name
         <input class="form-control" type="text" bind="FirstName" placeholder="First Name" />
@@ -64,7 +64,7 @@
 </ul>
 }
 
-@functions{
+@code{
 
     private BlazorListBase<Person> _listRef;
 

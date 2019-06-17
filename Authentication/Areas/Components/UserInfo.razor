@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components
-@using BlazorEssentials.Authentication.Areas.Components
+@using BlazingComponents.Authentication.Areas.Components
 
 @inject Microsoft.AspNetCore.Components.IUriHelper UriHelper
 
@@ -11,12 +11,12 @@ else if (UserState.IsLoggedIn)
 {
     <div>
         <span>UserState.CurrentUser.DisplayName</span>
-        <button class="btn btn-outline-primary" onclick="@UserState.SignOut">Sign out</button>
+        <button class="btn btn-outline-primary" @onclick="@UserState.SignOut">Sign out</button>
     </div>
 }
 else
 {
-    <button onclick="@OnSignInClick" class="btn btn-primary">Sign in</button>
+    <button @onclick="@OnSignInClick" class="btn btn-primary">Sign in</button>
 }
 
 @functions {

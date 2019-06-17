@@ -1,6 +1,6 @@
 ﻿@using System
 @using System.Linq
-@using BlazorEssentials.Demo.Models
+@using BlazingComponents.Demo.Models
 @inject IJSRuntime JsRuntime;
 @inherits SettingsBase
 
@@ -14,14 +14,14 @@
                         <label for="text_input_1">
                             Text Input 1
                         </label>
-                        <input type="text" id="text_input_1" class="form-control validate" bind="@ApplicationSettings.TextOption1" />
+                        <input type="text" id="text_input_1" class="form-control validate" @bind="@ApplicationSettings.TextOption1" />
                     </div>
                     <div class="form-group">
                         <div class="input-field">
                             <label for="text_input_2">
                                 Text Input 2
                             </label>
-                            <input type="text" id="text_input_2" class="form-control validate" bind="@ApplicationSettings.TextOption2" />
+                            <input type="text" id="text_input_2" class="form-control validate" @bind="@ApplicationSettings.TextOption2" />
                         </div>
                     </div>
 
@@ -30,62 +30,62 @@
                             <label for="text_input_3">
                                 Text Input 3
                             </label>
-                            <input type="text" id="text_input_3" class="form-control validate" bind="@ApplicationSettings.TextOption3" />
+                            <input type="text" id="text_input_3" class="form-control validate" @bind="@ApplicationSettings.TextOption3" />
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <div class="input-field">
-                            <input type="number" id="num_input_1" class="form-control validate" bind="@ApplicationSettings.NumberOption1" placeholder="Num1" />
+                            <input type="number" id="num_input_1" class="form-control validate" @bind="@ApplicationSettings.NumberOption1" placeholder="Num1" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-field">
-                            <input type="number" id="num_input_2" class="form-control validate" bind="@ApplicationSettings.NumberOption2" placeholder="Num2" />
+                            <input type="number" id="num_input_2" class="form-control validate" @bind="@ApplicationSettings.NumberOption2" placeholder="Num2" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-field">
-                            <input type="number" id="num_input_3" class="form-control validate" bind="@ApplicationSettings.NumberOption3" placeholder="Num3" />
+                            <input type="number" id="num_input_3" class="form-control validate" @bind="@ApplicationSettings.NumberOption3" placeholder="Num3" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="switch ml-2">
+                <div class="custom-control custom-switch ml-2">
                     <label>
                         Boolean Input 1
-                        <input type="checkbox" class="" bind="@ApplicationSettings.BoolOption1" />
+                        <input type="checkbox" class="custom-control-input" @bind="@ApplicationSettings.BoolOption1" />
                         <span class="lever"></span>
                     </label>
                 </div>
                 <div class="switch ml-2">
                     <label>
                         Boolean Input 2
-                        <input type="checkbox" class="" bind="@ApplicationSettings.BoolOption2" />
+                        <input type="checkbox" class="custom-control-input" @bind="@ApplicationSettings.BoolOption2" />
                         <span class="lever"></span>
                     </label>
                 </div>
                 <div class="switch ml-2">
                     <label>
                         Boolean Input 3
-                        <input type="checkbox" class="" bind="@ApplicationSettings.BoolOption3" />
+                        <input type="checkbox" class="custom-control-input" @bind="@ApplicationSettings.BoolOption3" />
                         <span class="lever"></span>
                     </label>
                 </div>
             </div>
             <div class="form-row">
                 <div class="custom-control custom-switch ml-2">
-                    <input class="custom-control-input" id="check-option-1" type="checkbox" bind="@ApplicationSettings.BoolOption1" />
+                    <input class="custom-control-input" id="check-option-1" type="checkbox" @bind="@ApplicationSettings.BoolOption1" />
                     <label class="custom-control-label" for="check-option-1">
                         Boolean Input 1
                     </label>
                 </div>
                 <div class="custom-control custom-switch ml-2">
-                    <input class="custom-control-input" id="check-option-2" type="checkbox" bind="@ApplicationSettings.BoolOption2" />
+                    <input class="custom-control-input" id="check-option-2" type="checkbox" @bind="@ApplicationSettings.BoolOption2" />
                     <label class="custom-control-label" for="check-option-2">
                         Boolean Input 2
                     </label>
@@ -102,7 +102,7 @@
                 <div class="form-group">
                     <label>
                         Enum Select 1
-                        <select class="form-control" bind="@ApplicationSettings.EnumOption1">
+                        <select class="form-control" @bind="@ApplicationSettings.EnumOption1">
                             @foreach (var entry in Enum.GetValues(typeof(SettingsEnum)))
                             {
                                 <option value="@entry">@entry.ToString()</option>
@@ -113,7 +113,7 @@
                 <div class="form-group">
                     <label>
                         Enum Select 2
-                        <select class="form-control" bind="@ApplicationSettings.EnumOption2">
+                        <select class="form-control" @bind="@ApplicationSettings.EnumOption2">
                             @foreach (var entry in Enum.GetValues(typeof(SettingsEnum)))
                             {
                                 <option value="@entry">@entry.ToString()</option>
@@ -124,7 +124,7 @@
                 <div class="form-group">
                     <label>
                         Enum Select 3
-                        <select class="form-control" bind="@ApplicationSettings.EnumOption3">
+                        <select class="form-control" @bind="@ApplicationSettings.EnumOption3">
                             @foreach (var entry in Enum.GetValues(typeof(SettingsEnum)))
                             {
                                 <option value="@entry">@entry.ToString()</option>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <button class="btn btn-primary" type="button" onclick="@ApplySettings">Apply</button>
+                <button class="btn btn-primary" type="button" @onclick="@ApplySettings">Apply</button>
             </div>
         </form>
     </div>

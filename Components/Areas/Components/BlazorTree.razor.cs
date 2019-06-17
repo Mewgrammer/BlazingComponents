@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorEssentials.ComponentLib.Models;
+using BlazingComponents.Lib.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorEssentials.ComponentLib.Areas.Components
+namespace BlazingComponents.Lib.Areas.Components
 {
     public class BlazorTreeBase<T> : ComponentBase
     {

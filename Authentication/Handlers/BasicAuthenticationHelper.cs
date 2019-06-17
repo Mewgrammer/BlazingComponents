@@ -4,13 +4,13 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using BlazorEssentials.Authentication.Interfaces;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Interfaces;
+using BlazingComponents.Authentication.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace BlazorEssentials.Authentication.Handlers
+namespace BlazingComponents.Authentication.Handlers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {

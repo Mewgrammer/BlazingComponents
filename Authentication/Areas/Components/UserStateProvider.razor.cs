@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BlazorEssentials.Authentication.Helpers;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Helpers;
+using BlazingComponents.Authentication.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace BlazorEssentials.Authentication.Areas.Components
+namespace BlazingComponents.Authentication.Areas.Components
 {
 
     public class UserStateProviderBase : ComponentBase
@@ -29,7 +29,16 @@ namespace BlazorEssentials.Authentication.Areas.Components
         protected override async Task OnInitAsync()
         {
             var url = HttpClient.BaseAddress.AbsoluteUri + "user";
-            CurrentUser = await HttpClient.GetJsonAsync<UserState>(url);
+            try
+            {
+                var response = await HttpClient.GetJsonAsync<UserState>(url);
+                CurrentUser = response;
+            }
+            catch(Exception ex)
+            {
+                CurrentUser = new UserState() { IsLoggedIn = false };
+            }
+
         }
 
         public async Task SignIn(UserCredentials credentials)

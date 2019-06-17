@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace BlazorEssentials.Authentication.Models
+namespace BlazingComponents.Authentication.Models
 {
     public class UserState
     {

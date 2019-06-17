@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorEssentials.Authentication.Interfaces;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Interfaces;
+using BlazingComponents.Authentication.Models;
 
-namespace BlazorEssentials.Demo.Services
+namespace BlazingComponents.Authentication.Services
 {
     public class BasicUserService : IUserService
     {

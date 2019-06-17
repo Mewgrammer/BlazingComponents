@@ -3,7 +3,7 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Components
 @typeparam T
-@inherits BlazorEssentials.ComponentLib.Areas.Components.BlazorTableBase<T>
+@inherits BlazingComponents.Lib.Areas.Components.BlazorTableBase<T>
 <div>
     <table class="table">
         <thead>
@@ -12,7 +12,7 @@
         <tbody>
             @foreach (var item in Items)
             {
-                <tr class="@GetRowClass(item)" ondblclick="@( e => ExpandItem(item) )" onclick="@( e => SelectItem(item))">
+                <tr class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@( e => SelectItem(item))">
                     @RowTemplate(item)
                 </tr>
                 if (IsExpanded(item))

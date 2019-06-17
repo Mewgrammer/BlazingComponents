@@ -1,6 +1,6 @@
-﻿using BlazorEssentials.Demo.Models;
+﻿using BlazingComponents.Demo.Models;
 
-namespace BlazorEssentials.Demo.Services
+namespace BlazingComponents.Demo.Services
 {
     public class SettingsService
     {

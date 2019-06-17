@@ -3,10 +3,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using BlazorEssentials.Authentication.Models;
+using BlazingComponents.Authentication.Models;
 using Newtonsoft.Json;
 
-namespace BlazorEssentials.Authentication.Helpers
+namespace BlazingComponents.Authentication.Helpers
 {
     public static class Authenticator
     {

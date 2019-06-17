@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BlazorEssentials.ComponentLib.Models;
+using BlazingComponents.Lib.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorEssentials.ComponentLib.Areas.Components
+namespace BlazingComponents.Lib.Areas.Components
 {
     public class BlazorCalleryBase<T> : ComponentBase
     {

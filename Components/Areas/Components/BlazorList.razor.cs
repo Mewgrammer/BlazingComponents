@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorEssentials.ComponentLib.Areas.Components
+namespace BlazingComponents.Lib.Areas.Components
 {
     public class BlazorListBase<T> : ComponentBase
     {

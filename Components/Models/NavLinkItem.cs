@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Routing;
 
-namespace BlazorEssentials.ComponentLib.Models
+namespace BlazingComponents.Lib.Models
 {
     public class NavLinkItem
     {

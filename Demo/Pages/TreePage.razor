@@ -2,13 +2,13 @@
 @using System
 @using System.Collections.Generic
 @using System.Linq
-@using BlazorEssentials.ComponentLib.Models
-@using BlazorEssentials.ComponentLib.Areas.Components
+@using BlazingComponents.Lib.Models
+@using BlazingComponents.Lib.Areas.Components
 @using Microsoft.AspNetCore.Components
 
 <h1>Sample Tree</h1>
 
-<BlazorTree ref="_treeRef" Nodes="@_nodes" OnExpand="@((BlazorTreeNode<string> node) => OnExpand(node))" OnCollapse="@((BlazorTreeNode<string> node) => OnCollapse(node))"  OnSelect="@((BlazorTreeNode<string> node) => OnSelect(node))" LazyLoadNodesAsyncDelegate="@LoadNodes">
+<BlazorTree @ref="_treeRef" Nodes="@_nodes" OnExpand="@((BlazorTreeNode<string> node) => OnExpand(node))" OnCollapse="@((BlazorTreeNode<string> node) => OnCollapse(node))"  OnSelect="@((BlazorTreeNode<string> node) => OnSelect(node))" LazyLoadNodesAsyncDelegate="@LoadNodes">
 </BlazorTree>
 
 @functions {

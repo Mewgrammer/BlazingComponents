@@ -1,6 +1,6 @@
-﻿@using BlazorEssentials.Authentication.Models
+﻿@using BlazingComponents.Authentication.Models
 @using Microsoft.AspNetCore.Components
-@inherits BlazorEssentials.Authentication.Areas.Components.RegisterBase
+@inherits BlazingComponents.Authentication.Areas.Components.RegisterBase
 
 
 <div class="user-info">
@@ -12,23 +12,23 @@
     {
         <div>
             <span class="username">You are currently logged in as @UserState.CurrentUser.DisplayName</span>
-            <button class="btn btn-primary" onclick="@UserState.SignOut">Sign out</button>
+            <button class="btn btn-primary" @onclick="@UserState.SignOut">Sign out</button>
         </div>
     }
     else
     {
-        <form onsubmit="@RegisterUser">
+        <form @onsubmit="@RegisterUser">
             <div class="form-group">
                 <label for="registerUsernameInput">Username</label>
-                <input type="text" id="registerUsernameInput" class="form-control" placeholder="Username" bind="@Username" required />
+                <input type="text" id="registerUsernameInput" class="form-control" placeholder="Username" @bind="@Username" required />
             </div>
             <div class="form-group">
                 <label for="registerPasswordInput">Password</label>
-                <input type="password" class="form-control" id="registerPasswordInput" placeholder="Password" bind="@Password" required />
+                <input type="password" class="form-control" id="registerPasswordInput" placeholder="Password" @bind="@Password" required />
             </div>
             <div class="form-group">
                 <label for="registerConfirmPasswordInput">Password</label>
-                <input type="password" class="form-control" id="registerConfirmPasswordInput" placeholder="Confirm Password" bind="@ConfirmPassword" required />
+                <input type="password" class="form-control" id="registerConfirmPasswordInput" placeholder="Confirm Password" @bind="@ConfirmPassword" required />
             </div>
             <span class="text-danger">@ErrorMessage</span>
             <button class="btn btn-primary">Register</button>

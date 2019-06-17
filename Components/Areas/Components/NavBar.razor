@@ -1,5 +1,5 @@
 @using System.Collections.Generic
-@using BlazorEssentials.ComponentLib.Models
+@using BlazingComponents.Lib.Models
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Routing
 
@@ -26,10 +26,10 @@
     </div>
 </nav>
 
-@functions {
+@code {
 
     [Parameter]
-    public string Title { get; set; } = "Cloud In A Box";
+    public string Title { get; set; } = "";
 
     [Parameter]
     private List<NavLinkItem> NavLinks { get; set; }

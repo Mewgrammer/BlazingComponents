@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace BlazorEssentials.Demo
+namespace BlazingComponents.Demo
 {
     public class Program
     {

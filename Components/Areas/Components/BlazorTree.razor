@@ -6,7 +6,7 @@
 
 
 @typeparam T
-@inherits BlazorEssentials.ComponentLib.Areas.Components.BlazorTreeBase<T>
+@inherits BlazingComponents.Lib.Areas.Components.BlazorTreeBase<T>
 @if (Nodes != null && Nodes.Any())
 {
     <ul class="list-group-flush">
@@ -15,14 +15,14 @@
         <li class="list-group-item">
             @if (node.Children.Any())
             {
-                <span onclick="@( (e) => OnExpandClick(e,node))">
-                    <i class="@GetIconClass(node)" onclick="@((e) => OnExpandClick(e, node))"></i>
+                <span @onclick="@( (e) => OnExpandClick(e, node))">
+                    <i class="@GetIconClass(node)" @onclick="@((e) => OnExpandClick(e, node))"></i>
                     @node.Text
                 </span>
             }
             else
             {
-                <span onclick="@( (e) => OnNodeClick(e,node))">
+                <span @onclick="@( (e) => OnNodeClick(e,node))">
                     @node.Text (@node.IsSelected)
                 </span>
             }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorEssentials.ComponentLib.Models
+namespace BlazingComponents.Lib.Models
 {
     public enum EProgressType
     {

@@ -3,7 +3,7 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Components
 @typeparam T
-@inherits BlazorEssentials.ComponentLib.Areas.Components.AutoTableComponentBase<T>
+@inherits BlazingComponents.Lib.Areas.Components.AutoTableComponentBase<T>
 
 <div>
     <table class="table">
@@ -18,7 +18,7 @@
         <tbody>
         @foreach (var item in Items)
         {
-            <tr class="@GetRowClass(item)" ondblclick="@( e => ExpandItem(item) )" onclick="@(e => SelectItem(item))">
+            <tr class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
                 @foreach (var prop in PropertyInfos)
                 {
                     <td>@prop.GetValue(item, null)</td>

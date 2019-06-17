@@ -1,12 +1,13 @@
 using System;
 using System.Net.Http;
 using System.Reflection;
-using BlazorEssentials.Authentication.Controllers;
-using BlazorEssentials.Authentication.Handlers;
-using BlazorEssentials.Authentication.Interfaces;
-using BlazorEssentials.ComponentLib;
-using BlazorEssentials.ComponentLib.Services;
-using BlazorEssentials.Demo.Services;
+using BlazingComponents.Authentication.Controllers;
+using BlazingComponents.Authentication.Handlers;
+using BlazingComponents.Authentication.Interfaces;
+using BlazingComponents.Authentication.Services;
+using BlazingComponents.Lib;
+using BlazingComponents.Lib.Services;
+using BlazingComponents.Demo.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -16,7 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BlazorEssentials.Demo
+namespace BlazingComponents.Demo
 {
     public class Startup
     {
@@ -80,8 +81,6 @@ namespace BlazorEssentials.Demo
             app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-           
 
             app.UseStaticFiles();
 
