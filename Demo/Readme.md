@@ -1,3 +1,12 @@
+
+### Build
+
+| Branch | Status |
+|:------:|--------|
+| master | [![Build status](https://dev.azure.com/InsiteMichael/Blazing%20Components/_apis/build/status/Blazing%20Components%20Master%20CI)](https://dev.azure.com/InsiteMichael/Blazing%20Components/_build/latest?definitionId=2)        |
+| dev    | [![Build status](https://dev.azure.com/InsiteMichael/Blazing%20Components/_apis/build/status/Blazing%20Components%20DevBuild)](https://dev.azure.com/InsiteMichael/Blazing%20Components/_build/latest?definitionId=3)           |
+|        |        |
+
 ## Contents
 This Project contains a Component Library and Basic Authentication for Blazor. Components are styled using Bootstrap 4.
 
