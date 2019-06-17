@@ -5,44 +5,43 @@
 @using BlazingComponents.Lib.Areas.Components
 @using BlazingComponents.Demo.Models
 
-<div>
-    <h3>
-        Autotable with selectable rows using generic data source. columns and rows generated using Reflection on Data Source
-    </h3>
-    <label>
-        Data Source
-        <select bind="@SelectedDataSource" class="form-control">
-            <option value="Persons" selected>Persons</option>
-            <option value="Cars">Cars</option>
-        </select>
-    </label>
-    @switch (SelectedDataSource)
-    {
-        case "Persons":
+    <div>
+        <h3>
+            Autotable with selectable rows using generic data source. columns and rows generated using Reflection on Data Source
+        </h3>
+        <label>
+            Data Source
+            <select @bind="@SelectedDataSource" class="form-control">
+                <option value="Persons" selected>Persons</option>
+                <option value="Cars">Cars</option>
+            </select>
+        </label>
+        @if (SelectedDataSource == "Persons")
+        {
             <AutoTable Items="Persons" Selectable="true" MultiSelect="false">
                 <ExpandedRowTemplate Context="person">
                     <td colspan="999">
-                        @($"{person.FirstName} {person.LastName} born on {person.BirthDate}")
+                        @($"{person?.FirstName} {person.LastName} born on {person?.BirthDate}")
                     </td>
                 </ExpandedRowTemplate>
             </AutoTable>
-            break;
-        case "Cars":
+        }
+        else if (SelectedDataSource == "Cars")
+        {
             <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
                 <ExpandedRowTemplate Context="car">
                     <td colspan="999">
-                        @($"A {car.Manufacturer} {car.Model} with {car.Horsepower} PS and a fuel consumption of {car.FuelConsumption} l/100km priced at {car.Price}€")
+                        @($"A {car?.Manufacturer} {car?.Model} with {car?.Horsepower} PS and a fuel consumption of {car?.FuelConsumption} l/100km priced at {car?.Price}€")
                     </td>
                 </ExpandedRowTemplate>
             </AutoTable>
-            break;
-    }
-</div>
+        }
+    </div>
 <div>
     <h3>
         expandable & selectable table with generic Data source. Row, Header and Footer Templates using RenderFragments
     </h3>
-    <BlazorTable ref="_tableComponent" Items="Persons" Expandable="_tableExpandable" Selectable="_tableSelectable" MultiSelect="_tableMultiSelect" MultiExpand="_tableMultiExpand">
+    <BlazorTable @ref="_tableComponent" Items="Persons" Expandable="_tableExpandable" Selectable="_tableSelectable" MultiSelect="_tableMultiSelect" MultiExpand="_tableMultiExpand">
         <TableHeader>
             <th></th>
             <th>ID</th>
@@ -51,7 +50,7 @@
             <th>BirthDate</th>
         </TableHeader>
         <RowTemplate Context="person">
-            <td><button class="btn btn-sm btn-light" onclick="@(() => _tableComponent?.ExpandItem(person))">Expand</button></td>
+            <td><button class="btn btn-sm btn-light" @onclick="@(() => _tableComponent?.ExpandItem(person))">Expand</button></td>
             <td>@person.Id</td>
             <td>@person.FirstName</td>
             <td>@person.LastName</td>
@@ -79,35 +78,35 @@
 
     <div class="row">
         <div class="custom-control custom-switch ml-5">
-            <input class="custom-control-input" id="check-option-1" type="checkbox" bind="@_tableSelectable" />
+            <input class="custom-control-input" id="check-option-1" type="checkbox" @bind="@_tableSelectable" />
             <label class="custom-control-label" for="check-option-1">
                 Selectable
             </label>
         </div>
         <div class="custom-control custom-switch ml-5">
-            <input class="custom-control-input" id="check-option-2" type="checkbox" bind="@_tableExpandable" />
+            <input class="custom-control-input" id="check-option-2" type="checkbox" @bind="@_tableExpandable" />
             <label class="custom-control-label" for="check-option-2">
                 Expandable
             </label>
         </div>
         <div class="custom-control custom-switch ml-5">
-            <input class="custom-control-input" id="check-option-3" type="checkbox" bind="@_tableMultiSelect" />
+            <input class="custom-control-input" id="check-option-3" type="checkbox" @bind="@_tableMultiSelect" />
             <label class="custom-control-label" for="check-option-3">
                 Multi-Select
             </label>
         </div>
         <div class="custom-control custom-switch ml-5">
-            <input class="custom-control-input" id="check-option-4" type="checkbox" bind="@_tableMultiExpand" />
+            <input class="custom-control-input" id="check-option-4" type="checkbox" @bind="@_tableMultiExpand" />
             <label class="custom-control-label" for="check-option-4">
                 Multi-Expand
             </label>
         </div>
     </div>
     <div class="row">
-        <button class="btn btn-primary" onclick="@(() => _tableComponent?.SelectAll())"> Select all </button>
-        <button class="btn btn-secondary ml-2" onclick="@(() => _tableComponent?.DeselectAll())"> Deselect all </button>
-        <button class="btn btn-primary ml-2" onclick="@(() => _tableComponent?.ExpandAll())"> Expand all </button>
-        <button class="btn btn-secondary ml-2" onclick="@(() => _tableComponent?.CollapseAll())"> Collapse all </button>
+        <button class="btn btn-primary" @onclick="@( () => _tableComponent?.SelectAll())"> Select all </button>
+        <button class="btn btn-secondary ml-2" @onclick="@( () => _tableComponent?.DeselectAll())"> Deselect all </button>
+        <button class="btn btn-primary ml-2" @onclick="@( () => _tableComponent?.ExpandAll())"> Expand all </button>
+        <button class="btn btn-secondary ml-2" @onclick="@( () => _tableComponent?.CollapseAll())"> Collapse all </button>
     </div>
     <div class="row">
         <div class="col">
@@ -142,7 +141,7 @@
     </div>
 </div>
 
-@functions
+@code
 {
 
     public IReadOnlyList<Person> Persons { get; private set; } = new List<Person>

@@ -7,20 +7,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cloud-In-A-Box</title>
+    <title>Blazing Components Demo</title>
     <base href="~/" />
-    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="libs/fontawesome/css/all.min.css" rel="stylesheet" />
-    <link href="~/css/toast.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    @*<link href="_content/BlazingComponents.Lib/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="_content/BlazingComponents.Lib/libs/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="_content/BlazingComponents.Lib/css/toast.css" rel="stylesheet">
+    <link href="_content/BlazingComponents.Lib/css/site.css" rel="stylesheet" />*@
+    
 
-    <link href="css/site.css" rel="stylesheet" />
+    <link href="~/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/libs/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/toast.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+
 </head>
 <body>
     <app>@(await Html.RenderComponentAsync<App>())</app>
 
     <script src="_framework/blazor.server.js"></script>
-    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="_content/BlazingComponents.Lib/libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="_content/BlazingComponents.Lib/libs/bootstrap/js/bootstrap.min.js"></script>*@
+    <script type="text/javascript" src="~/libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/libs/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>

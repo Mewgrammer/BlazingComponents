@@ -11,19 +11,19 @@
     {
         <div>
             <span class="username">You are currently logged in as @UserState.CurrentUser.DisplayName</span>
-            <button class="btn btn-primary" onclick="@UserState.SignOut">Sign out</button>
+            <button class="btn btn-primary" @onclick="@UserState.SignOut">Sign out</button>
         </div>
     }
     else
     {
-        <form onsubmit="@SignIn">
+        <form @onsubmit="@SignIn">
             <div class="form-group">
                 <label for="usernameInput">Username</label>
-                <input type="text" id="usernameInput" class="form-control" placeholder="Username" bind="@Username" required />
+                <input type="text" id="usernameInput" class="form-control" placeholder="Username" @bind="@Username" required />
             </div>
             <div class="form-group">
                 <label for="passwordInput">Password</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Password" bind="@Password" required />
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password" @bind="@Password" required />
                 <span class="text-danger">@ErrorMessage</span>
             </div>
             <button class="btn btn-primary">Sign in</button>

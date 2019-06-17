@@ -11,7 +11,7 @@
         @for (var i = 0; i < Items.Count; i++)
         {
             var index = i;
-            <li data-target="#razor_carousel" onclick="@(() => Navigate(index))" class="@(i == CurrentIndex ? "active" : "")"></li>
+            <li data-target="#razor_carousel" @onclick="@(() => Navigate(index))" class="@(i == CurrentIndex ? "active" : "")"></li>
         }
     </ol>
     <div class="carousel-inner">
@@ -26,10 +26,10 @@
             </div>
         }
     </div>
-    <a class="carousel-control-prev" role="button" onclick="@Back">
+    <a class="carousel-control-prev" role="button" @onclick="@Back">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     </a>
-    <a class="carousel-control-next" role="button" onclick="@Forward">
+    <a class="carousel-control-next" role="button" @onclick="@Forward">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </a>
 </div>

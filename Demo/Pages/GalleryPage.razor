@@ -6,7 +6,7 @@
 @page "/gallery"
 <div class="container-fluid mt-5">
     <h4>Gallery</h4>
-    <BlazorGallery ref="_gallery" Items="GalleryItems" />
+    <BlazorGallery @ref="_gallery" Items="GalleryItems" />
     <div class="bg-dark text-white">
         @if (CurrentItem != null)
         {
@@ -17,12 +17,12 @@
                 Data: @CurrentItem.Data<br />
             </span>
         }
-        <button class="btn btn-danger" onclick="@((e) =>_gallery.Back(e))">Back</button>
-        <button class="btn btn-success" onclick="@((e) => _gallery.Forward(e))">Forward</button>
+        <button class="btn btn-danger" @onclick="@((e) =>_gallery.Back(e))">Back</button>
+        <button class="btn btn-success" @onclick="@((e) => _gallery.Forward(e))">Forward</button>
     </div>
 </div>
 
-@functions
+@code
 {
     public GalleryItem<string> CurrentItem { get; set; }
 
