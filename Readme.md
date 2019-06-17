@@ -1,23 +1,28 @@
-[![Build status](https://michaelmew.visualstudio.com/BlazorEssentials/_apis/build/status/Build%20and%20push%20to%20NuGet)](https://michaelmew.visualstudio.com/BlazorEssentials/_build/latest?definitionId=7)
 
-[![Docker Container Build status](https://michaelmew.visualstudio.com/BlazorEssentials/_apis/build/status/BlazorEssentials-Docker%20container-CI)](https://michaelmew.visualstudio.com/BlazorEssentials/_build/latest?definitionId=8)
+### Build
+
+| Branch | Status |
+|:------:|--------|
+| master | [![Build status](https://dev.azure.com/InsiteMichael/Blazing%20Components/_apis/build/status/Blazing%20Components%20Master%20CI)](https://dev.azure.com/InsiteMichael/Blazing%20Components/_build/latest?definitionId=2)        |
+| dev    | [![Build status](https://dev.azure.com/InsiteMichael/Blazing%20Components/_apis/build/status/Blazing%20Components%20DevBuild)](https://dev.azure.com/InsiteMichael/Blazing%20Components/_build/latest?definitionId=3)           |
+|        |        |
 
 ## Contents
-This Project contains a Component Library and Basic Authentication for Blazor. Components are styled using Bootstrap 4. As server-side Blazor does not support stylesheets in component libraries you will have to install them yourself -> Tutorial is provided below.
+This Project contains a Component Library and Basic Authentication for Blazor. Components are styled using Bootstrap 4.
 
 There are 2 Packages available on Nuget.org
 
-- [BlazorEssentials.Authentication](https://www.nuget.org/packages/BlazorEssentials.Authentication/)
-- [BlazorEssentials.ComponentLib](https://www.nuget.org/packages/BlazorEssentials.ComponentLib/)
+- [BlazingComponents.Authentication](https://www.nuget.org/packages/BlazingComponents.Authentication/)
+- [BlazingComponents.Lib](https://www.nuget.org/packages/BlazingComponents.Lib/)
 
-### BlazorEssentials.Authentication
+### BlazingComponents.Authentication
 This Package includes support for basic authentication in Blazor.
 - User Controller for basic Authentication
 - UserStateProvider for use in Components
 - Components for Login & Register
-- BasicUser Service to test Authentication with Users stored in Memory
+- Basic User Service to test Authentication with Users stored in Memory
 
-### BlazorEssentials.ComponentLib
+### BlazingComponents.Lib
 This Project contains various Components for Blazor. All Components can be used on Client-side or Server-side blazor.
 
 Included Components
@@ -33,13 +38,9 @@ Included Components
   
 
 ## Getting Started
-- If you want to use Toasts download [toastr.css](https://github.com/CodeSeven/toastr/tree/master/build)
-- If you want to use animations with the Expandable Container download [animate.css](https://daneden.github.io/animate.css/)
-- If you want to use icons we recommend [fontawesome](https://fontawesome.com/start)
-- Download [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 - Install the NuGetPackages [BlazorEssentials.ComponentLib](https://www.nuget.org/packages/BlazorEssentials.ComponentLib/) and optional [BlazorEssentials.Authentication](https://www.nuget.org/packages/BlazorEssentials.Authentication/) for Basic Authentication support into your Project.
 
-Create a Asp.NetCore 3.0 Project for Blazor and put the downloaded libraries in your wwwroot-Folder and make sure to include them in your _Host.cshtml file.
+Create a Asp.NetCore 3.0 Project for Blazor and edit your _Host.cshtml to include the styles and scripts of the BlazingComponent.Lib project.
 
 Your_Host.cshtml should look somewhat like this:
 ```html
@@ -48,23 +49,20 @@ Your_Host.cshtml should look somewhat like this:
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Blazor Project</title>
+    <title>Blazing Components Demo</title>
     <base href="~/" />
-    <link href="~/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/libs/fontawesome/css/all.min.css" rel="stylesheet" />
-    <link href="~/css/toast.css" rel="stylesheet">
-    <link href="~/css/animate.css" rel="stylesheet">
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="_content/BlazingComponents.Lib/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="_content/BlazingComponents.Lib/libs/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="_content/BlazingComponents.Lib//css/toast.css" rel="stylesheet">
+    <link href="_content/BlazingComponents.Lib/css/site.css" rel="stylesheet" />
 </head>
 <body>
     <app>@(await Html.RenderComponentAsync<App>())</app>
-
     <script src="_framework/blazor.server.js"></script>
-    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_content/BlazingComponents.Lib/libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="_content/BlazingComponents.Lib/libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-
 ```
 
 
@@ -75,8 +73,8 @@ This Project uses [Sotsera.Blazor.Toaster](https://github.com/sotsera/sotsera.bl
 
 Components are styled using the awesome [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) Library
 
-BlazorEssentials.Authentication uses [Bcrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core) to secure Passwords
+BlazingComponents.Authentication uses [Bcrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core) to secure Passwords
 
 ## License
 
-BlazorEssentials is licensed under [MIT license](http://www.opensource.org/licenses/mit-license.php)
+BlazingComponents is licensed under [MIT license](http://www.opensource.org/licenses/mit-license.php)
