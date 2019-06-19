@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BlazingComponents.Authentication;
 
 namespace BlazingComponents.Demo
 {
@@ -31,16 +32,8 @@ namespace BlazingComponents.Demo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddCors();
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddApplicationPart(typeof(UserController).GetTypeInfo().Assembly)
-                .AddControllersAsServices();
-
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
-                .AddCookie();
-
-
+            var mvcBuilder = services.AddControllers();
+            services.AddBlazingAuthentication(mvcBuilder);
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -77,13 +70,9 @@ namespace BlazingComponents.Demo
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseStaticFiles();
-
+            app.UseBlazingAuthentication();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

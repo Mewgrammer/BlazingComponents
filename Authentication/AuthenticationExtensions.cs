@@ -3,21 +3,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using BlazingComponents.Authentication.Controllers;
+using Microsoft.AspNetCore.Authentication;
+using BlazingComponents.Authentication.Handlers;
 
 namespace BlazingComponents.Authentication
 {
     public static class AuthenticationExtensions
     {
-        public static void UseBlazingComponentsAuthWithMvc(this IApplicationBuilder app)
+        public static void UseBlazingAuthentication(this IApplicationBuilder app)
         {
-            app.UseMvc();
+            app.UseAuthentication();
+            app.UseAuthorization();
         }
-        public static void AddBlazingComponentsAuthWithMvc(this IServiceCollection services)
+        public static void AddBlazingAuthentication(this IServiceCollection services, IMvcBuilder mvcBuilder)
         {
-            services.AddMvc()
-            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-            .AddApplicationPart(typeof(UserController).GetTypeInfo().Assembly)
-            .AddControllersAsServices();
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null)
+                .AddCookie();
+
+            services.AddAuthorization();
+            mvcBuilder
+                .AddApplicationPart(typeof(UserController).GetTypeInfo().Assembly)
+                .AddControllersAsServices();
         }
     }
 }

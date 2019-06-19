@@ -8,11 +8,8 @@ namespace BlazingComponents.Authentication.Interfaces
 {
     public interface IUserService
     {
-        UserState Register(UserCredentials credentials);
         Task<UserState> RegisterAsync(UserCredentials credentials);
-
-        UserState Authenticate(UserCredentials credentials);
-        Task<UserState> AuthenticateAsync(UserCredentials credentials);
+        Task<UserState> LoginAsync(UserCredentials credentials);
 
     }
 }

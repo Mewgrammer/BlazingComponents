@@ -12,7 +12,7 @@
     <ul class="list-group-flush">
         @foreach (var node in Nodes)
         {
-        <li class="list-group-item">
+        <li @key="node" class="list-group-item">
             @if (node.Children.Any())
             {
                 <span @onclick="@( (e) => OnExpandClick(e, node))">

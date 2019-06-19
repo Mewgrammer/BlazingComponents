@@ -11,22 +11,22 @@
         <tr>
             @foreach (var prop in Properties)
             {
-                <th>@prop</th>
+                <th @key="prop">@prop</th>
             }
         </tr>
         </thead>
         <tbody>
         @foreach (var item in Items)
         {
-            <tr class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
+            <tr class="@GetRowClass(item)" @key="item" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
                 @foreach (var prop in PropertyInfos)
                 {
-                    <td>@prop.GetValue(item, null)</td>
+                    <td @key="prop">@prop.GetValue(item, null)</td>
                 }
             </tr>
             if (IsExpanded(item) && ExpandedRowTemplate != null)
             {
-                <tr>
+                <tr >
                     @ExpandedRowTemplate(item)
                 </tr>
             }

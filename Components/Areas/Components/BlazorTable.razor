@@ -12,7 +12,7 @@
         <tbody>
             @foreach (var item in Items)
             {
-                <tr class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@( e => SelectItem(item))">
+                <tr @key="item" class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@( e => SelectItem(item))">
                     @RowTemplate(item)
                 </tr>
                 if (IsExpanded(item))
