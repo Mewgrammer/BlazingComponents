@@ -10,7 +10,7 @@
 
 @if (forecasts == null)
 {
-    <Progress ProgressType="@(EProgressType.Animated)" ProgressValue="@Progress"></Progress>
+    <BlazorProgress ProgressType="@(EProgressType.Animated)" ProgressValue="@Progress"></BlazorProgress>
 }
 else
 {
@@ -39,27 +39,26 @@ else
 }
 
 @code {
-    WeatherForecast[] forecasts;
+WeatherForecast[] forecasts;
 
-    private int Progress { get; set; } = 0;
+private int Progress { get; set; } = 0;
 
-    protected override async Task OnInitAsync()
+protected override async Task OnInitAsync()
+{
+    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+}
+
+protected async void Refresh()
+{
+    forecasts = null;
+    for(int i = 0; i <= 100; i++)
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
-
-    protected async void Refresh()
-    {
-        forecasts = null;
-        for(int i =0; i<=100; i++)
-        {
-            Progress++;
-            await Task.Delay(300);
-            StateHasChanged();
-
-        }
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        Progress += 10;
+        await Task.Delay(300);
         StateHasChanged();
-        Progress = 0;
     }
+    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    StateHasChanged();
+    Progress = 0;
+}
 }

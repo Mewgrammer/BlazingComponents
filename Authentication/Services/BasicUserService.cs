@@ -35,7 +35,7 @@ namespace BlazingComponents.Authentication.Services
             return Users.SingleOrDefault(u => u.Username == credentials.Username && BCrypt.Net.BCrypt.Verify(credentials.Password, u.Password)).GetUserState();
         }
 
-        public Task<UserState> AuthenticateAsync(UserCredentials credentials)
+        public Task<UserState> LoginAsync(UserCredentials credentials)
         {
             return Task.FromResult(Users.SingleOrDefault(u => u.Username == credentials.Username && BCrypt.Net.BCrypt.Verify(credentials.Password, u.Password)).GetUserState());
         }

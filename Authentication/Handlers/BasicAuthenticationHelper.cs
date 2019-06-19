@@ -40,7 +40,7 @@ namespace BlazingComponents.Authentication.Handlers
                 var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
                 var username = credentials[0];
                 var password = credentials[1];
-                user = await _userService.AuthenticateAsync(new UserCredentials() { Username = username, Password = password });
+                user = await _userService.LoginAsync(new UserCredentials() { Username = username, Password = password });
             }
             catch
             {

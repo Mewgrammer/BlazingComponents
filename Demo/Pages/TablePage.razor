@@ -35,6 +35,14 @@
                     </td>
                 </ExpandedRowTemplate>
             </AutoTable>
+
+            <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
+                <ExpandedRowTemplate Context="car">
+                    <td colspan="999">
+                       @car.ToString()
+                    </td>
+                </ExpandedRowTemplate>
+            </AutoTable>
         }
     </div>
 <div>
