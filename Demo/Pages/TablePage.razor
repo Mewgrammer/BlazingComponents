@@ -30,16 +30,8 @@
         {
             <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
                 <ExpandedRowTemplate Context="car">
-                    <td colspan="999">
+                    <td colspan="@(car.GetType().GetProperties().Count())">
                         @($"A {car?.Manufacturer} {car?.Model} with {car?.Horsepower} PS and a fuel consumption of {car?.FuelConsumption} l/100km priced at {car?.Price}€")
-                    </td>
-                </ExpandedRowTemplate>
-            </AutoTable>
-
-            <AutoTable Items="Cars" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="true">
-                <ExpandedRowTemplate Context="car">
-                    <td colspan="999">
-                       @car.ToString()
                     </td>
                 </ExpandedRowTemplate>
             </AutoTable>

@@ -8,6 +8,12 @@ namespace BlazingComponents.Lib.Areas.Components
     public class BlazorTableBase<T> : ComponentBase
     {
         [Parameter]
+        public Func<T, object> ItemKeyDelegate { get; set; } = (T item) => { return item; };
+
+        [Parameter]
+        public Func<T, object> ExpandedItemKeyDelegate { get; set; } = (T item) => { return string.Join(";", item.GetType().GetProperties().Select(p => $"({p.Name}:{p.GetValue(item)})")); };
+
+        [Parameter]
         protected string TableClass { get; set; } = "table table-striped";
 
         [Parameter]
