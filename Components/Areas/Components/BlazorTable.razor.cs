@@ -8,10 +8,10 @@ namespace BlazingComponents.Lib.Areas.Components
     public class BlazorTableBase<T> : ComponentBase
     {
         [Parameter]
-        public Func<T, object> ItemKeyDelegate { get; set; } = (T item) => { return item; };
+        protected Func<T, object> ItemKeyDelegate { get; set; } = (T item) => { return item; };
 
         [Parameter]
-        public Func<T, object> ExpandedItemKeyDelegate { get; set; } = (T item) => { return string.Join(";", item.GetType().GetProperties().Select(p => $"({p.Name}:{p.GetValue(item)})")); };
+        protected Func<T, object> ExpandedItemKeyDelegate { get; set; } = (T item) => { return string.Join(";", item.GetType().GetProperties().Select(p => $"({p.Name}:{p.GetValue(item)})")); };
 
         [Parameter]
         protected string TableClass { get; set; } = "table table-striped";
@@ -47,6 +47,22 @@ namespace BlazingComponents.Lib.Areas.Components
         protected bool MultiExpand { get; set; } = false;
 
         [Parameter]
+        protected bool UsePagination { get; set; } = false;
+
+        protected int ItemsPerPage {
+            get => _itemsPerPage;
+            set
+            {
+                _itemsPerPage = value;
+                CreatePages();
+                StateHasChanged();
+            }
+        }
+
+        [Parameter]
+        protected IList<int> ItemsPerPageOptions { get; set; } = new List<int> { 5, 10, 50, 100, 1000 }; 
+
+        [Parameter]
         public IList<T> SelectedItems { get; private set; } = new List<T>();
 
         [Parameter]
@@ -64,10 +80,67 @@ namespace BlazingComponents.Lib.Areas.Components
         [Parameter]
         public EventCallback<IEnumerable<T>> OnExpandMany { get; set; }
 
+        protected IList<T> CurrentPage => Pages[PageIndex];
+        protected IList<IList<T>> Pages { get; private set; } = new List<IList<T>>();
+        protected int PageIndex { get; private set; } = 0;
+
+        private int _itemsPerPage;
+
         public event Action<T> OnItemSelected;
         public event Action<T> OnItemExpanded;
         public event Action<IEnumerable<T>> OnItemsSelected;
         public event Action<IEnumerable<T>> OnItemsExpanded;
+
+        protected override void OnInit()
+        {
+            _itemsPerPage = ItemsPerPageOptions.FirstOrDefault();
+            CreatePages();
+        }
+
+        protected void CreatePages()
+        {
+            Pages = new List<IList<T>>();
+            if(!UsePagination)
+            {
+                Pages.Add(Items.ToList());
+            }
+            if (ItemsPerPage <= 0) return;
+            if (!ItemsPerPageOptions.Contains(ItemsPerPage))
+            {
+                ItemsPerPage = ItemsPerPageOptions.FirstOrDefault();
+            }
+            var count = 0;
+            while(count < Items.Count)
+            {
+                Pages.Add(Items.Skip(count).Take(ItemsPerPage).ToList());
+                count += ItemsPerPage;
+            }
+            if(Pages.Count <= PageIndex)
+            {
+                PageIndex = Pages.Count - 1;
+            }
+        }
+
+        protected void ChangeItemsPerPage(UIChangeEventArgs e)
+        {
+            try
+            {
+                ItemsPerPage = (int)e.Value;
+                CreatePages();
+                StateHasChanged();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
+            }
+        }
+
+        protected void ChangePage(int pageIndex)
+        {
+            if (pageIndex < 0 || pageIndex >= Pages.Count) return;
+            PageIndex = pageIndex;
+            StateHasChanged();
+        }
 
         public void SelectItem(T item)
         {

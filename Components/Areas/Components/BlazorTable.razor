@@ -4,27 +4,76 @@
 @using Microsoft.AspNetCore.Components
 @typeparam T
 @inherits BlazingComponents.Lib.Areas.Components.BlazorTableBase<T>
-<div>
-    <table class="table">
-        <thead>
-            <tr>@TableHeader</tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Items)
-            {
-                <tr @key="ItemKeyDelegate(item)" class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@( e => SelectItem(item))">
-                    @RowTemplate(item)
-                </tr>
-                if (IsExpanded(item))
+    <div>
+        <table class="table">
+            <thead>
+                <tr>@TableHeader</tr>
+            </thead>
+            <tbody>
+                @foreach (var item in CurrentPage)
                 {
-                    <tr @key="ExpandedItemKeyDelegate(item)">
-                        @ExpandedRowTemplate(item)
+                    <tr @key="ItemKeyDelegate(item)" class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@( e => SelectItem(item))">
+                        @RowTemplate(item)
                     </tr>
+                    if (IsExpanded(item))
+                    {
+                        <tr @key="ExpandedItemKeyDelegate(item)">
+                            @ExpandedRowTemplate(item)
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-        <tfoot>
-            <tr>@TableFooter</tr>
-        </tfoot>
-    </table>
-</div>
+            </tbody>
+            <tfoot>
+                <tr>@TableFooter</tr>
+            </tfoot>
+        </table>
+        @if (UsePagination)
+        {
+            <label>
+                Items per Page
+                <select class="custom-select justify-content-end" @bind="@ItemsPerPage">
+                    @foreach (var option in ItemsPerPageOptions)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+            </label>
+        }
+        @if (UsePagination && Pages.Count > 1)
+        {
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <span class="page-link" @onclick="@( () => ChangePage(PageIndex - 1))">Previous</span>
+                </li>
+                @if (Pages.Count < 5)
+                {
+                    @foreach (var page in Pages)
+                    {
+                        <li class="@(PageIndex == Pages.IndexOf(page) ? "page-item active" : "page-item")">
+                            <span class="page-link" @onclick="@( () => ChangePage(Pages.IndexOf(page)))">@(Pages.IndexOf(page) + 1)</span>
+                        </li>
+                    }
+                }
+                else
+                {
+                    var toSkip = PageIndex > 0 ? PageIndex - 1 : PageIndex;
+                    @foreach (var page in Pages.Skip(toSkip).Take(4))
+                    {
+                        <li class="@(PageIndex == Pages.IndexOf(page) ? "page-item active" : "page-item")">
+                            <span class="page-link" @onclick="@( () => ChangePage(Pages.IndexOf(page)))">@(Pages.IndexOf(page) + 1)</span>
+                        </li>
+                    }
+                    @if (Pages.Count > toSkip + 4)
+                    {
+                        <li>...</li>
+                        <li class="@(PageIndex == Pages.Count - 1 ? "page-item active" : "page-item")">
+                            <span class="page-link" @onclick="@( () => ChangePage(Pages.Count - 1))">@Pages.Count</span>
+                        </li>
+                    }
+                }
+                <li class="page-item" @onclick="@( () => ChangePage(PageIndex + 1))">
+                    <span class="page-link">Next</span>
+                </li>
+            </ul>
+        }
+    </div>
