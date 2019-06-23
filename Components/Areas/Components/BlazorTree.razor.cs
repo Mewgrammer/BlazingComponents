@@ -7,8 +7,15 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazingComponents.Lib.Areas.Components
 {
+    /// <summary>
+    /// Blazor Tree Component for hierarchical Data
+    /// </summary>
+    /// <typeparam name="T">Type for Node Data</typeparam>
     public class BlazorTreeBase<T> : ComponentBase
     {
+        [Parameter]
+        public Func<BlazorTreeNode<T>, object> NodeKeyDelegate { get; set; } = (BlazorTreeNode<T> item) => { return item; };
+
         [Parameter]
         public List<BlazorTreeNode<T>> Nodes { get; set; } = new List<BlazorTreeNode<T>>();
 

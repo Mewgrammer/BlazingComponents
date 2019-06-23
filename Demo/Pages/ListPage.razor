@@ -5,7 +5,7 @@
 
 <h1>Lists</h1>
 
-<BlazorList @ref="_listRef" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
+<BlazorList @ref="_listRef" ItemKeyDelegate="@( (item) => item)" ExpandedItemKeyDelegate="@( (item) => $"{item.LastName}:{item.FirstName}:{item.BirthDate.ToString("o")}")" Items="@ListItems.ToList()" Selectable="true" MultiSelect="false" Expandable="true" MultiExpand="false">
     <ItemTemplate Context="item">
         <span>@item.FirstName  @item.LastName , @item.BirthDate</span>
         <button class="btn btn-outline-dark" @onclick="@( () => ExpandItem(item))">Expand</button>
@@ -22,14 +22,14 @@
 <form @onsubmit="@OnAddItem">
     <label>
         First Name
-        <input class="form-control" type="text" bind="FirstName" placeholder="First Name" />
+        <input class="form-control" type="text" @bind="FirstName" placeholder="First Name" />
     </label>
     <label>
         First Name
-        <input class="form-control" type="text" bind="LastName" placeholder="Last Name" />
+        <input class="form-control" type="text" @bind="LastName" placeholder="Last Name" />
     </label>
     <label> Birth Date
-        <input class="form-control" type="date" bind="BirthDate" />
+        <input class="form-control" type="date" @bind="BirthDate" />
     </label>
     <button class="btn btn-primary">Add Item</button>
 </form>

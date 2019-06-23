@@ -5,11 +5,13 @@
 <ul class="list-group">
     @foreach (var item in Items)
     {
-        <li @key="item" class="@GetItemClass(item)" @onclick="@( () => OnItemClick(item))">
+        <li @key="ItemKeyDelegate(item)" class="@GetItemClass(item)" @onclick="@( () => OnItemClick(item))">
             @ItemTemplate(item)
             @if (IsExpanded(item) && ExpandedItemTemplate != null)
             {
-                @ExpandedItemTemplate(item);
+                <div @key="ExpandedItemKeyDelegate(item)">
+                    @ExpandedItemTemplate(item)
+                </div>
             }
         </li>
     }

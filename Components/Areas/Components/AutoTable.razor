@@ -16,21 +16,21 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var item in Items)
-        {
-            <tr class="@GetRowClass(item)" @key="item" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
-                @foreach (var prop in PropertyInfos)
-                {
-                    <td @key="prop">@prop.GetValue(item, null)</td>
-                }
-            </tr>
-            if (IsExpanded(item) && ExpandedRowTemplate != null)
+            @foreach (var item in Items)
             {
-                <tr >
-                    @ExpandedRowTemplate(item)
+                <tr  @key="ItemKeyDelegate(item)" class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
+                    @foreach (var prop in PropertyInfos)
+                    {
+                        <td @key="prop">@prop.GetValue(item, null)</td>
+                    }
                 </tr>
+                if (IsExpanded(item) && ExpandedRowTemplate != null)
+                {
+                    <tr @key="ExpandedItemKeyDelegate(item)">
+                        @ExpandedRowTemplate(item)
+                    </tr>
+                }
             }
-        }
         </tbody>
     </table>
 </div>
