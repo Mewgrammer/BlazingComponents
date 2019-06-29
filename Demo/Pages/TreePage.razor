@@ -8,7 +8,7 @@
 
 <h1>Sample Tree</h1>
 
-<BlazorTree @ref="_treeRef" NodeKeyDelegate="@( (node) => node)" Nodes="@_nodes" OnExpand="@((BlazorTreeNode<string> node) => OnExpand(node))" OnCollapse="@((BlazorTreeNode<string> node) => OnCollapse(node))"  OnSelect="@((BlazorTreeNode<string> node) => OnSelect(node))" LazyLoadNodesAsyncDelegate="@LoadNodes">
+<BlazorTree @ref="_treeRef"  Nodes="@_nodes" OnExpand="@((BlazorTreeNode<string> node) => OnExpand(node))" OnCollapse="@((BlazorTreeNode<string> node) => OnCollapse(node))"  OnSelect="@((BlazorTreeNode<string> node) => OnSelect(node))" LazyLoadNodesAsyncDelegate="@LoadNodes">
 </BlazorTree>
 
 @functions {
@@ -71,17 +71,19 @@
     private async Task<List<BlazorTreeNode<string>>> LoadNodes(int? ParentId = null)
     {
         return new List<BlazorTreeNode<string>>(){
-            new BlazorTreeNode<string>() { Text = "Node 1", Children = new List<BlazorTreeNode<string>>()
-{
+            new BlazorTreeNode<string>() { Text = "Node 1",
+                Children = new List<BlazorTreeNode<string>>()
+                {
                     new BlazorTreeNode<string>() { Text = "ChildNode 1"},
                     new BlazorTreeNode<string>() { Text = "ChildNode 2"},
                     new BlazorTreeNode<string>() { Text = "ChildNode 3"},
-                    new BlazorTreeNode<string>() { Text = "ChildNode 4", Children = new List<BlazorTreeNode<string>>()
-{
-                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 1"},
-                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 2"},
-                        new BlazorTreeNode<string>() { Text = "Nested ChildNode 3"},
-                    }
+                    new BlazorTreeNode<string>() { Text = "ChildNode 4",
+                        Children = new List<BlazorTreeNode<string>>()
+                        {
+                            new BlazorTreeNode<string>() { Text = "Nested ChildNode 1"},
+                            new BlazorTreeNode<string>() { Text = "Nested ChildNode 2"},
+                            new BlazorTreeNode<string>() { Text = "Nested ChildNode 3"},
+                        }
                 },
                 }
             }
