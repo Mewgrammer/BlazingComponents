@@ -14,13 +14,13 @@
         <div class="navbar-nav">
             @foreach (var navlink in NavLinks)
             {
-            <NavLink class="nav-item nav-link pt-0 pb-0" href="@navlink.Href" Match="@navlink.Match">
-                <i class="@navlink.Icon"></i>
-                @if (navlink.DisplayName.Length > 0)
-                {
-                    <span class="pl-2 pr-2">@navlink.DisplayName</span>
-                }
-            </NavLink>
+                <NavLink class="nav-item nav-link pt-0 pb-0" href="@navlink.Href" Match="@navlink.Match">
+                    <i class="@navlink.Icon"></i>
+                    @if (navlink.DisplayName.Length > 0)
+                    {
+                        <span class="pl-2 pr-2">@navlink.DisplayName</span>
+                    }
+                </NavLink>
             }
         </div>
     </div>
