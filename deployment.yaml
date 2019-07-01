@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blazor-lib-deployment
+  name: blazing-components-deployment
   labels:
-    app: blazor-lib
+    app: blazing-components-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: blazor-lib
+      app: blazing-components
   template:
     metadata:
       labels:
-        app: blazor-lib
+        app: blazing-components
     spec:
       containers:
-      - name: blazor-lib
-        image: mewgrammer/cloud-in-a-box:latest
+      - name: blazing-components
+        image: mewgrammer/blazing-components:latest
         ports:
         - containerPort: 80
