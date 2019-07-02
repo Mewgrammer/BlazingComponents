@@ -14,29 +14,29 @@
     <ul class="list-group-flush">
         @foreach (var node in Nodes)
         {
-        <li @key="NodeKeyDelegate(node)" class="list-group-item">
-            @if (node.Children.Any())
-            {
-                <span @onclick="@( (e) => OnExpandClick(e, node))">
-                    <i class="@GetIconClass(node)" @onclick="@((e) => OnExpandClick(e, node))"></i>
-                    @node.Text
-                </span>
-            }
-            else
-            {
-                <span @onclick="@( (e) => OnNodeClick(e,node))">
-                    @node.Text (@node.IsSelected)
-                </span>
-            }
-            @if (node.IsExpanded)
-            {
-                <BlazorTree Nodes="@node.Children"
-                        OnSelect="@OnSelect"
-                        OnCollapse="@OnCollapse"
-                        OnExpand="@OnExpand">
-                </BlazorTree>
-            }
-        </li>
+            <li @key="NodeKeyDelegate(node)" class="list-group-item">
+                @if (node.Children.Any())
+                {
+                    <span @onclick="@( (e) => OnExpandClick(e, node))">
+                        <i class="@GetIconClass(node)" @onclick="@((e) => OnExpandClick(e, node))"></i>
+                        @node.Text
+                    </span>
+                }
+                else
+                {
+                    <span @onclick="@( (e) => OnNodeClick(e,node))">
+                        @node.Text (@node.IsSelected)
+                    </span>
+                }
+                @if (node.IsExpanded)
+                {
+                    <BlazorTree Nodes="@node.Children"
+                            OnSelect="@OnSelect"
+                            OnCollapse="@OnCollapse"
+                            OnExpand="@OnExpand">
+                    </BlazorTree>
+                }
+            </li>
         }
     </ul>
 }

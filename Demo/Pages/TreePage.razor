@@ -63,14 +63,10 @@
         StateHasChanged();
     }
 
-    protected override async Task OnInitAsync()
-    {
-
-    }
-
     private async Task<List<BlazorTreeNode<string>>> LoadNodes(int? ParentId = null)
     {
-        return new List<BlazorTreeNode<string>>(){
+
+        return await Task.FromResult(new List<BlazorTreeNode<string>>(){
             new BlazorTreeNode<string>() { Text = "Node 1",
                 Children = new List<BlazorTreeNode<string>>()
                 {
@@ -87,7 +83,7 @@
                 },
                 }
             }
-        };
+        });
     }
 
 }

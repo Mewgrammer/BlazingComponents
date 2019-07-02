@@ -18,7 +18,7 @@
         <tbody>
             @foreach (var item in Items)
             {
-                <tr  @key="ItemKeyDelegate(item)" class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
+                <tr  class="@GetRowClass(item)" @ondblclick="@( e => ExpandItem(item) )" @onclick="@(e => SelectItem(item))">
                     @foreach (var prop in PropertyInfos)
                     {
                         <td @key="prop">@prop.GetValue(item, null)</td>

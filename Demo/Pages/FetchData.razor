@@ -8,6 +8,7 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
+
 @if (forecasts == null)
 {
     <BlazorProgress ProgressType="@(EProgressType.Animated)" ProgressValue="@Progress"></BlazorProgress>
@@ -39,26 +40,26 @@ else
 }
 
 @code {
-WeatherForecast[] forecasts;
+    WeatherForecast[] forecasts;
 
-private int Progress { get; set; } = 0;
+    private int Progress { get; set; } = 0;
 
-protected override async Task OnInitAsync()
-{
-    Refresh();
-}
-
-protected async void Refresh()
-{
-    forecasts = null;
-    for(int i = 0; i <= 100; i+= 10)
+    protected override async Task OnInitAsync()
     {
-        Progress = i;
-        await Task.Delay(300);
-        StateHasChanged();
+        await Refresh();
     }
-    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    StateHasChanged();
-    Progress = 0;
-}
+
+    protected async Task Refresh()
+    {
+        forecasts = null;
+        for (int i = 0; i <= 100; i += 10)
+        {
+            Progress = i;
+            await Task.Delay(300);
+            StateHasChanged();
+        }
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        StateHasChanged();
+        Progress = 0;
+    }
 }

@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core-nightly/aspnet:3.0.0-preview5 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview6 AS base
 WORKDIR /app
 EXPOSE 80	
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core-nightly/sdk:3.0.100-preview5 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-preview6 AS build
 WORKDIR /src
 COPY ["Demo/BlazingComponents.Demo.csproj", "Demo/"]
 COPY ["Components/BlazingComponents.Lib.csproj", "Components/"]
