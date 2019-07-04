@@ -607,18 +607,19 @@ public ShowToastOnSignalRConnectionStateChange(){
 
 ```
 
-
-# Credits
-
-This Project uses [Sotsera.Blazor.Toaster](https://github.com/sotsera/sotsera.blazor.toaster/blob/master/README.md) for displaying Toasts
-
-Components are styled using the awesome [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) Library
-
-BlazingComponents.Authentication uses [Bcrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core) to secure Passwords
-
 # License
 
 BlazingComponents is licensed under [MIT license](http://www.opensource.org/licenses/mit-license.php)
 
 
-If you find any problems/bugs or bad practices feel free to open a issue.
+# Credits
+
+Components are styled using the awesome [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) Library
+
+BlazingComponents.Authentication uses [Bcrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core) to secure Passwords
+
+
+This Project was created in collaboration with Insite GmbH & Reutlingen University (Hochschule Reutlingen), Faculty Informatics - Medien & Kommunikationsinformatik in the lecture "MKI Projekt: Cloud-in-a-Box"
+Special thanks to Prof. Dr. Hertkorn for his support and making this project possible. 
+
+If you find any problems/bugs or notice any bad practices feel free to open a issue.
