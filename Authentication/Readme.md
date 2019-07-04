@@ -9,17 +9,20 @@
 
 
 # Table of Contents
+- [Table of Contents](#Table-of-Contents)
+- [NuGet Packages](#NuGet-Packages)
+  - [BlazingComponents.Authentication](#BlazingComponentsAuthentication)
 - [Authentication Package](#Authentication-Package)
-  - [Getting Started](#Getting-Started-Authentication)
-  - [Imports](#Imports)
-  - [Startup.cs](#Startupcs)
-  - [App.razor](#Apprazor)
-  - [User State](#User-State)
-  - [UserController](#UserController)
-  - [IUserService](#IUserService)
-  - [BasicAuthenticationHandler](#BasicAuthenticationHandler)
-- [Credits](#Credits)
+  - [Getting Started (Authentication)](#Getting-Started-Authentication)
+    - [Imports](#Imports)
+    - [Startup.cs](#Startupcs)
+    - [App.razor](#Apprazor)
+    - [User State](#User-State)
+    - [UserController](#UserController)
+    - [IUserService](#IUserService)
+    - [BasicAuthenticationHandler](#BasicAuthenticationHandler)
 - [License](#License)
+- [Credits](#Credits)
 
 # NuGet Packages
 There is a Packages available on Nuget.org
@@ -131,15 +134,19 @@ public interface IUserService
 ### BasicAuthenticationHandler
 The BasicAuthenticationHandler receives a instance of IUserService via Dependency Injection.
 
-# Credits
-
-Components are styled using the awesome [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) Library
-
-BlazingComponents.Authentication uses [Bcrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core) to secure Passwords
 
 # License
 
 BlazingComponents is licensed under [MIT license](http://www.opensource.org/licenses/mit-license.php)
 
 
+# Credits
+
+Components are styled using the awesome [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) Library
+
+BlazingComponents.Authentication uses [Bcrypt.Net-Core](https://github.com/neoKushan/BCrypt.Net-Core) to secure Passwords
+
 If you find any problems/bugs or bad practices feel free to open a issue.
+
+This Project was created at Reutlingen University (Hochschule Reutlingen), Faculty Informatics - Medien & Kommunikationsinformatik in the lecture "MKI Projekt: Cloud-in-a-Box"
+Special thanks to Prof. Dr. Hertkorn for his support and making this project possible. 
